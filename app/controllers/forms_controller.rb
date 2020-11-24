@@ -18,7 +18,7 @@ class FormsController < ApplicationController
     @form.user = @user
 
     if @form.save
-      redirect_to trip_path(@trip)
+      redirect_to form_path(@form)
     else
       render :new
     end
