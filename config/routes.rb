@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     resources :forms, only: [:new, :create]
   end
 
-  resources :receipts, only: [:show, :edit, :update, :destroy]
+  resources :receipts, only: [:show, :edit, :update, :destroy] do
+  	resources :items, only: [:new, :create]
+  end
+  resources :items, only: [:update, :destroy]
+  
 end
