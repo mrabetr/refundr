@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   has_many :receipts, dependent: :destroy
   has_many :forms, dependent: :destroy
 
-  validates :arrival_date, :departure_date, :final_destination, presence: true
+  validates :arrival_date, :departure_date, :final_destination, :country, presence: true
   # validate :departure_date_after_arrival_date
 
   # private
