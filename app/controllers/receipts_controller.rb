@@ -5,8 +5,8 @@ class ReceiptsController < ApplicationController
   end
 
   def new
-    @receipt = Receipt.new
     @trip = Trip.find(params[:trip_id])
+    @receipt = Receipt.new
   end
 
   def create
