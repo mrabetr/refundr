@@ -1,0 +1,13 @@
+<h1>Trip</h1>
+
+<ul>
+  <li><%= @trip.arrival_date %></li>
+  <li><%= @trip.departure_date %></li>
+  <li><%= @trip.final_destination %></li>
+</ul>
+
+<%= link_to 'Edit', edit_trip_path %>
+<br>
+<%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>
+<br>
+<%= link_to 'Back to trips', trips_path %>
