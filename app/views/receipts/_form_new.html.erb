@@ -1,0 +1,10 @@
+<%= simple_form_for([trip, receipt]) do |f| %>
+  <%= f.input :shop %>
+  <%= f.input :shop_vat_no %>
+  <%= f.input :shop_address %>
+  <%= f.input :transaction_no %>
+  <%= f.input :date %>
+  <%= f.input :total %>
+  <%= f.input :total_excl_vat %>
+  <%= f.submit class: "btn btn-secondary w-100" %>
+<% end %>

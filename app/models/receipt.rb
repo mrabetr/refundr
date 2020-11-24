@@ -1,7 +1,7 @@
 class Receipt < ApplicationRecord
   belongs_to :trip
   belongs_to :user
-  has_many :items
+  has_many :items, dependent: :destroy
 
   monetize :total_cents
   monetize :total_excl_vat_cents

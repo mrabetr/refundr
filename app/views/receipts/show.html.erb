@@ -1,0 +1,15 @@
+<div class="container my-3">
+  <h2>Receipt</h2>
+  <ul>
+    <li>Shop: <%= @receipt.shop %></li>
+    <li>VAT number: <%= @receipt.shop_vat_no %></li>
+    <li>Address: <%= @receipt.shop_address %></li>
+    <li>Transaction no: <%= @receipt.transaction_no %></li>
+    <li>Date: <%= @receipt.date %></li>
+    <li>Total: <%= humanized_money_with_symbol(@receipt.total) %></li>
+    <li>Total excl VAT: <%= humanized_money_with_symbol(@receipt.total_excl_vat) %></li>
+  </ul>
+  <%= link_to "Back to trip", trip_path(@trip) %>
+  <%= link_to "Edit", edit_receipt_path(@receipt) %>
+  <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
