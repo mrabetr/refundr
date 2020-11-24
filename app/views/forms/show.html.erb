@@ -1,0 +1,54 @@
+<div class="container">
+  <h1>Custom's Form 407</h1>
+
+  <h2>Part A: Customer's declaration</h2>
+  <ul>
+    <li>Title: <%= @user.title %></li>
+    <li>Last Name: <%= @user.first_name %></li>
+    <li>First Name: <%= @user.last_name %></li>
+    <li>Permanent Address: <%= @user.address %></li>
+    <li>Passport Number: <%= @user.passport_no %></li>
+    <li>Issued by Government of <%= @user.passport_country %></li>
+    <li>EU Arrival on: <%= @trip.arrival_date %></li>
+    <li>EU Departure on: <%= @trip.departure_date %></li>
+    <li>Final Destination: <%= @trip.final_destination %></li>
+  </ul>
+  <p>Signature and date</p>
+
+  <h2>Pasrt B: Goods description</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 10%;">Item</th>
+        <th scope="col" style="width: 10%;">Receipt Number</th>
+        <th scope="col" style="width: 10%;">Date</th>
+        <th scope="col" style="width: 10%;">Quantity</th>
+        <th scope="col" style="width: 40%;">Description</th>
+        <th scope="col" style="width: 20%;">Price incl VAT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>123456</td>
+        <td>2</td>
+        <td>Watch</td>
+        <td>£100</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Part C: Retailer's declaration</h2>
+  <p>I declare that:</p>
+  <ul>
+    <li>The details on this form are correct</li>
+    <li>I am satisfied that the customer is entitiled to use the VAT Retail Export Scheme</li>
+    <li>The goods were sold on the dates stated on Part B</li>
+    <li>The customer has completed and signed Part A</li>
+  </ul>
+  <p>Signature and date</p>
+
+  <h2>Part D: For official use</h2>
+  <p>For official use at the point of export from the EU</p>
+  <p>Signature and stamp</p>
+</div>
