@@ -7,6 +7,8 @@ class TripsController < ApplicationController
   end
 
   def show
+    @receipts = Receipt.where(trip_id: @trip).order(created_at: :desc)
+    # @receipt = Receipt.new
   end
 
   def new
