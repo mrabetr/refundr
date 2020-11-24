@@ -1,31 +1,27 @@
-<div class="container mt-3">
-  <div class="row justify-content-center">
-    <div class="col-xs-12">
-      <h1>Trip</h1>
+<div class="container my-3">
+  <h1>Trip</h1>
 
-      <ul>
-        <li>Visited country: <%= @trip.country %></li>
-        <li>Arrival date: <%= @trip.arrival_date %></li>
-        <li>Departure date: <%= @trip.departure_date %></li>
-        <li>Final destination: <%= @trip.final_destination %></li>
-      </ul>
+  <ul>
+    <li>Visited country: <%= @trip.country_name %></li>
+    <li>Arrival date: <%= @trip.arrival_date %></li>
+    <li>Departure date: <%= @trip.departure_date %></li>
+    <li>Final destination: <%= @trip.final_destination_name %></li>
+  </ul>
 
-      <h3>Receipts</h3>
-      <ul>
-        <% @receipts.each do |receipt| %>
-          <li>Date: <%= receipt.date %>, Shop: <%= receipt.shop %>,
-            Total: <%= humanized_money_with_symbol(receipt.total) %>,
-            Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %>
-          </li>
-        <% end %>
-      </ul>
-      <%= link_to 'Add receipt', new_trip_receipt_path(@trip) %>
-      <br>
-      <%= link_to 'Edit', edit_trip_path %>
-      <br>
-      <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <br>
-      <%= link_to 'Back to trips', trips_path %>
-    </div>
-  </div>
+  <h3>Receipts</h3>
+  <ul>
+    <% @receipts.each do |receipt| %>
+      <li>Date: <%= receipt.date %>, Shop: <%= receipt.shop %>,
+        Total: <%= humanized_money_with_symbol(receipt.total) %>,
+        Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'Add receipt', new_trip_receipt_path(@trip) %>
+  <br>
+  <%= link_to 'Edit', edit_trip_path %>
+  <br>
+  <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <br>
+  <%= link_to 'Back to trips', trips_path %>
 </div>
