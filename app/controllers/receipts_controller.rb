@@ -2,11 +2,12 @@ class ReceiptsController < ApplicationController
   def show
     @receipt = Receipt.find(params[:id])
     @trip = @receipt.trip
+    @item = Item.new
   end
 
   def new
-    @receipt = Receipt.new
     @trip = Trip.find(params[:trip_id])
+    @receipt = Receipt.new
   end
 
   def create
@@ -17,7 +18,7 @@ class ReceiptsController < ApplicationController
     @receipt.user = @user
 
     if @receipt.save
-      redirect_to trip_path(@trip)
+      redirect_to receipt_path(@receipt)
     else
       render :new
     end
@@ -55,4 +56,5 @@ class ReceiptsController < ApplicationController
     params.require(:receipt).permit(:shop, :shop_vat_no, :shop_address,
       :transaction_no, :date, :total, :total_excl_vat)
   end
+
 end

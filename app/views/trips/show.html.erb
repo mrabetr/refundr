@@ -6,6 +6,16 @@
   <li><%= @trip.final_destination %></li>
 </ul>
 
+<h3>Receipts</h3>
+<ul>
+  <% @receipts.each do |receipt| %>
+  <li>Shop: <%= receipt.shop %></li>
+  <li>Total: <%= humanized_money_with_symbol(receipt.total) %></li>
+  <li>Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %></li>
+  <% end %>
+</ul>
+<%= link_to 'Add receipt', new_trip_receipt_path(@trip) %>
+<br>
 <%= link_to 'Edit', edit_trip_path %>
 <br>
 <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>

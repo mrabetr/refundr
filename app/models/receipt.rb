@@ -3,6 +3,8 @@ class Receipt < ApplicationRecord
   belongs_to :user
   has_many :items, dependent: :destroy
 
+  has_one_attached :photo
+
   monetize :total_cents
   monetize :total_excl_vat_cents
 
