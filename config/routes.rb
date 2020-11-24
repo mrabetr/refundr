@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
 
   resources :receipts, only: [:show, :edit, :update, :destroy]
+  resources :forms, only: :show
 end
