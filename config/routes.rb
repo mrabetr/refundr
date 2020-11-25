@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   resources :receipts, only: [:show, :edit, :update, :destroy] do
   	resources :items, only: [:new, :create]
-  end
-
-  resources :items, only: [:edit, :update, :destroy]
+  end  
+  resources :items, only: [:update, :destroy]
 end
