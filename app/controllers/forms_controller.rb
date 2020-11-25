@@ -9,22 +9,23 @@ class FormsController < ApplicationController
     @user = @form.user
   end
 
-  def new
-    @form = Form.new
-    @trip = Trip.find(params[:trip_id])
-  end
-
   def create
-    @form = Form.new
     @trip = Trip.find(params[:trip_id])
+    @form = Form.new(form_params)
     @user = current_user
     @form.trip = @trip
     @form.user = @user
 
     if @form.save
-      redirect_to form_path(@form)
+      redirect_to trip_form_path(@trip, @form)
     else
       render :new
     end
+  end
+
+  private
+
+  def form_params
+    params.permit(:trip_id, :user_id)
   end
 end

@@ -5,20 +5,21 @@
 <div class="menu" id="menu">
   <div>
     <div>
-      <div class="menu-close"><i class="fas fa-times"></i></div>
       <div class="user-info">
         <h6><%= current_user.first_name %> <%= current_user.last_name %></h6>
-        <p><%= current_user.passport_country %></p>
+        <p>Country:<%= current_user.passport_country %></p>
       </div>
-      <ul class="nav-menu-items">
+      <ul class="nav-menu-items" id="nav-menu">
         <li><a href=<%="#{ root_path}"%>>Home</a></li>
         <li><a href=<%="#{ trips_path}"%>>Your Trips</a></li>
         <li><a href=<%="#{ forms_path}"%>>Your Claims</a></li>
         <li><a href=<%="#{ edit_user_registration_path}"%>>Edit your details</a></li>
-        <li><a href=<%=""%>>Help</a></li>
+        <%# <li><a href=<%=""%><%#>Help</a></li> %>
       </ul>
-      <ul>
-        <li><a href=<%"#{ destroy_user_session_path }"%>>Logout</a></li>
+      <ul class="logout">
+        <div class="d-flex py-2">
+          <i class="fas fa-power-off"></i><%= link_to "Log out", destroy_user_session_path, method: :delete, style: "font-weight: bold ;" %>
+        </div>
         <p>Version 1.0</p>
       </ul>
     </div>
