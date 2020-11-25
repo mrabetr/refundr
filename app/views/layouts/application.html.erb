@@ -14,7 +14,11 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+    <header class="showcase" id="everything">
+      <div class="container showcase-inner">
+        <%= yield %>
+      </div>
+    </header>
 
-    <%= yield %>
   </body>
 </html>
