@@ -1,3 +1,8 @@
 <h1>Demonstration of Refundr</h1>
-<%= link_to "Login", new_user_session_path %>
-<%= link_to "Join" , new_user_registration_path %>
+
+<div class="d-flex justify-content-center flex-column registration">
+  <%= link_to "Login", new_user_session_path, class: "btn btn-warning button", id: "no-background" %>
+  <%= link_to "Join" , new_user_registration_path, class: "btn btn-warning button" %>
+</div>
+
+

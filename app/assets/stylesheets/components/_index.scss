@@ -1,7 +1,9 @@
 // Import your components CSS files here.
+@import "body";
 @import "alert";
 @import "avatar";
 @import "navbar";
+@import "buttons";
 
 body {
   color: #102542;
@@ -18,3 +20,6 @@ a:hover {
   color: #102542;
   text-decoration: none;
 }
+
+
+

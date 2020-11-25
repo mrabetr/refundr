@@ -1,0 +1,7 @@
+<%= simple_form_for([@receipt, @item]) do |f| %>
+  <%= f.input :quantity %>
+  <%= f.input :description %>
+  <%= f.input :price_cents %>
+  <%= f.submit class: "btn btn-secondary w-100" %>
+<% end %>
+<%= link_to 'Back', receipt_path(@receipt) %>
