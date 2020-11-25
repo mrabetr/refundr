@@ -1,0 +1,9 @@
+<h1>Forms</h1>
+
+<ul>
+  <% @forms.each do |form| %>
+    <li>Link to trip => <%= link_to form.trip.country_name, trip_path(form.trip) %> |
+        Link to form => <%= link_to "Custom's form", form_path(form) %>
+    </li>
+  <% end %>
+</ul>
