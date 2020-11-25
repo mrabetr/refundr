@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   end
   
   resources :items, only: [:update, :destroy]
-  resources :forms, only: :show
+  resources :forms, only: [:index, :show]
 end
