@@ -25,3 +25,8 @@
   <br>
   <%= link_to 'Back to trips', trips_path %>
 </div>
+
+<%= simple_form_for @form do |f| %>
+  <%= f.submit value: "Generate form", class: "btn btn-warning button" %>
+<% end %>
+
