@@ -11,10 +11,13 @@
   <h3>Receipts</h3>
   <ul>
     <% @receipts.each do |receipt| %>
-      <li>Date: <%= receipt.date %>, Shop: <%= receipt.shop %>,
-        Total: <%= humanized_money_with_symbol(receipt.total) %>,
-        Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %>
-      </li>
+      <%= link_to receipt_path(receipt) do %>
+        <li>
+          Date: <%= receipt.date %>, Shop: <%= receipt.shop %>,
+          Total: <%= humanized_money_with_symbol(receipt.total) %>,
+          Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 
