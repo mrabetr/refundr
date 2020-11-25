@@ -20,5 +20,5 @@
   <%= link_to "Add item", new_receipt_item_path(@receipt) %>
   <%= link_to "Back to trip", trip_path(@trip) %>
   <%= link_to "Edit", edit_receipt_path(@receipt) %>
-  <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning delete-button" %>
 </div>
