@@ -2,7 +2,7 @@
 <p> Your current location: <%= current_user.user_location %></p>
 <ul>
   <% @trips.each do |trip| %>
-  <li><%= link_to trip.final_destination, trip_path(trip) %></li>
+  <li><%= link_to trip.final_destination_name, trip_path(trip) %></li>
 <% end %>
 </ul>
 

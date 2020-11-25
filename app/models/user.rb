@@ -6,8 +6,8 @@ class User < ApplicationRecord
   validates :title, :first_name, :last_name, :address, :passport_no, :passport_country, presence: true
   validates :passport_no, uniqueness: true
 
-  geocoded_by :current_sign_in_ip,
-  :latitude => :latitude, :longitude => :longitude
+  geocoded_by :current_sign_in_ip
+  # :latitude => :latitude, :longitude => :longitude
   after_validation :geocode
 
   def after_database_authentication
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   def user_location
     Geocoder.search([latitude, longitude]).first.city
   end
-  
+
   def passport_country_name
     country = ISO3166::Country[passport_country]
     country.translations[I18n.locale.to_s] || country.name
