@@ -29,7 +29,7 @@
   <br>
   <%= link_to 'Edit', edit_trip_path %>
   <br>
-  <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning delete-button" %>
   <br>
   <%= link_to 'Back to trips', trips_path %>
 </div>

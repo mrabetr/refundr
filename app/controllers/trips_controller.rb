@@ -18,6 +18,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     @trip.user = current_user
     if @trip.save
+      current_user.trips.where(current: true).where.not(id: @trip.id).update_all(current: false)
       redirect_to trip_path(@trip)
     else
       render :new
