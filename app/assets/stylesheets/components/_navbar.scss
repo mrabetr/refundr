@@ -2,7 +2,6 @@
   width: 100%;
   background-color:white;
   height: 70px;
-  width: 100%;
   .hamburger {
     position: relative;
     top: 10px;
@@ -17,8 +16,8 @@
   top: 0px;
   height: 100%;
   width: 0px;
+  overflow: hidden;
   background-color: #BFCBC2;
-  overflow:hidden;
   -webkit-transition:width 200ms ease-in;
   -moz-transition:width 200ms ease-in;
   -o-transition:width 200ms ease-in;

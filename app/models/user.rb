@@ -14,9 +14,11 @@ class User < ApplicationRecord
     save
   end
 
+
   def user_location
     Geocoder.search([latitude, longitude]).first.city
   end
+
 
   def passport_country_name
     country = ISO3166::Country[passport_country]
