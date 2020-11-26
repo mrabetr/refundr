@@ -1,32 +1,41 @@
 <% if !current_user.nil? %>
-<div class="menu-wrap d-flex justify-content-sm-between h-20">
-  <div class="hamburger" id='hamburger'><i class="fas fa-bars"></i></div>
-  <div class="flex-row-reverse ml-auto align-items-end">  
-    <h5 class="ml-auto pl-5 pt-2 mb-0"><span id="city"></span>, <span id="country"></span></h5>
-    <h6 class="ml-auto pl-5"><span id="description" style="color: gray"></span> <span id="temperature" style="color: gray"></span><img id="icon" class="justify-content-end" style="height: 2em, width: 2em" src=""></h6>
-  </div>
-</div>
-<div class="menu" id="menu">
-  <div>
-    <div>
-      <div class="user-info">
-        <h6><%= current_user.first_name %> <%= current_user.last_name %></h6>
-        <p>Country:<%= current_user.passport_country %></p>
-      </div>
-      <ul class="nav-menu-items" id="nav-menu">
-        <li><a href=<%="#{ root_path}"%>>Home</a></li>
-        <li><a href=<%="#{ trips_path}"%>>Your Trips</a></li>
-        <li><a href=<%="#{ forms_path}"%>>Your Claims</a></li>
-        <li><a href=<%="#{ edit_user_registration_path}"%>>Edit your details</a></li>
-        <%# <li><a href=<%=""%><%#>Help</a></li> %>
-      </ul>
-      <ul class="logout">
-        <div class="d-flex py-2">
-          <i class="fas fa-power-off"></i><%= link_to "Log out", destroy_user_session_path, method: :delete, style: "font-weight: bold;" %>
-        </div>
-        <p>Version 1.0</p>
-      </ul>
+  <div class="menu-wrap d-flex justify-content-sm-between h-20">
+    <div class="hamburger" id='hamburger'><img src="<%= asset_path 'U_orange.png' %>" width="40" height="65"></div>
+    <div class="flex-row-reverse ml-auto align-items-end">  
+      <h5 class="ml-auto pl-5 pt-2 mb-0"><span id="city"></span>, <span id="country"></span></h5>
+      <h6 class="ml-auto pl-5"><span id="description" style="color: gray"></span> <span id="temperature" style="color: gray"></span><img id="icon" class="justify-content-end" style="height: 2em, width: 2em" src=""></h6>
     </div>
   </div>
-</div>
+  <div class="menu" id="menu">
+    <div>
+      <div>
+        <div class="user-info">
+          <h6><%= current_user.first_name %> <%= current_user.last_name %></h6>
+          <p>Country:<%= current_user.passport_country %></p>
+        </div>
+        <ul class="nav-menu-items" id="nav-menu">
+          <li><a href=<%="#{ root_path}"%>>Home</a></li>
+          <li><a href=<%="#{ trips_path}"%>>Your Trips</a></li>
+          <li><a href=<%="#{ forms_path}"%>>Your Claims</a></li>
+          <li><a href=<%="#{ edit_user_registration_path}"%>>Edit your details</a></li>
+          <%# <li><a href=<%=""%><%#>Help</a></li> %>
+        </ul>
+        <ul class="logout">
+          <div class="d-flex py-2">
+            <i class="fas fa-power-off"></i><%= link_to "Log out", destroy_user_session_path, method: :delete, style: "font-weight: bold;" %>
+          </div>
+          <p>Version 1.0</p>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="navbar navbar-expand-sm w-100" style="background-color: #FFAC30;">
+    <a class="navbar-brand" href="#">
+      <img src="<%= asset_path 'Logo_big.png' %>" width="160" height="50" padding="5" alt="" loading="Refundr">
+    </a>
+  </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 <% end %>
