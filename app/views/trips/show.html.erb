@@ -11,12 +11,20 @@
   <h3>Receipts</h3>
   <ul>
     <% @receipts.each do |receipt| %>
-      <li>Date: <%= receipt.date %>, Shop: <%= receipt.shop %>,
-        Total: <%= humanized_money_with_symbol(receipt.total) %>,
-        Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %>
-      </li>
+      <%= link_to receipt_path(receipt) do %>
+        <li>
+          Date: <%= receipt.date %>, Shop: <%= receipt.shop %>,
+          Total: <%= humanized_money_with_symbol(receipt.total) %>,
+          Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
+
+  <div class= "alert-box">
+    <p><i class="fas fa-info-circle"></i> Remember to claim your VAT by 30-09-20!</p>
+  </div>
+
   <%= link_to 'Add receipt', new_trip_receipt_path(@trip) %>
   <br>
   <%= link_to 'Edit', edit_trip_path %>
@@ -26,7 +34,7 @@
   <%= link_to 'Back to trips', trips_path %>
 </div>
 
-<%= simple_form_for @form do |f| %>
+<%= simple_form_for ([@trip, @form]) do |f| %>
   <%= f.submit value: "Generate form", class: "btn btn-warning button" %>
 <% end %>
 

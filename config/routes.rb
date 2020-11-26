@@ -4,12 +4,13 @@ Rails.application.routes.draw do
 
   resources :trips do
     resources :receipts, only: [:new, :create]
-    resources :forms, only: [:create, :show]
+    resources :forms, only: [:create]
   end
 
   resources :receipts, only: [:show, :edit, :update, :destroy] do
   	resources :items, only: [:new, :create]
-  end  
-  resources :items, only: [:update, :destroy]
-  resources :forms, only: [:index]
+end
+  resources :items, only: [:edit, :update, :destroy]
+  resources :forms, only: [:index, :show]
+
 end

@@ -1,5 +1,4 @@
 class TripsController < ApplicationController
-
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -9,7 +8,6 @@ class TripsController < ApplicationController
   def show
     @receipts = Receipt.where(trip_id: @trip).order(created_at: :desc)
     @form = Form.new
-    # @receipt = Receipt.new
   end
 
   def new
@@ -44,7 +42,6 @@ class TripsController < ApplicationController
   end
 
   private
-
 
   def trip_params
     params.require(:trip).permit(:arrival_date, :departure_date, :final_destination, :country)
