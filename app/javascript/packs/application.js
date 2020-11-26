@@ -29,6 +29,8 @@ import { addItems } from "../files/receiptItemForm";
 import { removeField } from "../files/receiptItemForm";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { fetchCurrentPositionWeather } from '../files/weather';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -37,4 +39,5 @@ document.addEventListener('turbolinks:load', () => {
   hamburgerHider();
   activePage();
   addItems();
+  fetchCurrentPositionWeather();
 });
