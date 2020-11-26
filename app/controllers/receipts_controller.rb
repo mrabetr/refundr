@@ -3,6 +3,11 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.find(params[:id])
     @trip = @receipt.trip
     @item = Item.new
+
+    @total = 0
+    @receipt.items.each do |item|
+      @total += item.price_cents
+    end
   end
 
   def new
@@ -16,7 +21,11 @@ class ReceiptsController < ApplicationController
     @user = current_user
     @receipt.trip = @trip
     @receipt.user = @user
-
+    total = 0
+    @receipt.items.each do |item|
+      total += item.price_cents
+    end
+    @receipt.total = total
     if @receipt.save
       redirect_to receipt_path(@receipt)
     else
@@ -25,13 +34,17 @@ class ReceiptsController < ApplicationController
   end
 
   def edit
-    @receipt = Receipt.find(params[:id]); @receipt.items.build
+    @receipt = Receipt.find(params[:id]);
   end
 
   def update
     @receipt = Receipt.find(params[:id])
-
-    if @receipt.update_attributes(receipt_params)
+    total = 0
+    @receipt.items.each do |item|
+      total += item.price_cents
+    end
+    @receipt.total = total
+    if @receipt.update(receipt_params)
       redirect_to receipt_path(@receipt)
     else
       render :edit
@@ -54,7 +67,7 @@ class ReceiptsController < ApplicationController
 
   def receipt_params
     params.require(:receipt).permit(:shop, :shop_vat_no, :shop_address,
-      :transaction_no, :date, :total, :total_excl_vat, items_attributes:[:quantity, :description, :price_cents, :_destroy])
+      :transaction_no, :date, :total, :total_excl_vat, items_attributes:[:quantity, :description, :price_cents])
   end
 
 end
