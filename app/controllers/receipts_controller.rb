@@ -1,8 +1,28 @@
+# require_relative '../../services/ocr_service'
+
 class ReceiptsController < ApplicationController
   def show
     @receipt = Receipt.find(params[:id])
     @trip = @receipt.trip
     @item = Item.new
+  end
+
+  def upload_photo_receipt
+    new
+  end
+
+  def create_photo_receipt
+    create
+  end
+
+  def edit_photo_receipt
+    @receipt = Receipt.find(params[:id])
+    @data = OcrService.new.detect_text(@receipt.photo.key)
+    @receipt.update(@data)
+  end
+
+  def update_photo_receipt
+    update
   end
 
   def new
@@ -54,7 +74,7 @@ class ReceiptsController < ApplicationController
 
   def receipt_params
     params.require(:receipt).permit(:shop, :shop_vat_no, :shop_address,
-      :transaction_no, :date, :total, :total_excl_vat)
+      :transaction_no, :date, :total, :total_excl_vat, :photo)
   end
 
 end
