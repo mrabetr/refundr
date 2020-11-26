@@ -1,6 +1,10 @@
 <% if !current_user.nil? %>
-<div class="menu-wrap">
+<div class="menu-wrap d-flex justify-content-sm-between h-25">
   <div class="hamburger" id='hamburger'><i class="fas fa-bars"></i></div>
+  <div class="flex-row-reverse ml-auto align-items-end pt-2">  
+    <h5>Current location: <span id="city"></span>, <span id="country"></span></h5>
+    <h6 class="ml-auto pl-5"><span id="description" style="color: gray"></span> <span id="temperature" style="color: gray"></span><img id="icon" class="justify-content-end" style="height: 2em, width: 2em" src=""></h6>
+  </div>
 </div>
 <div class="menu" id="menu">
   <div>
@@ -18,7 +22,7 @@
       </ul>
       <ul class="logout">
         <div class="d-flex py-2">
-          <i class="fas fa-power-off"></i><%= link_to "Log out", destroy_user_session_path, method: :delete, style: "font-weight: bold ;" %>
+          <i class="fas fa-power-off"></i><%= link_to "Log out", destroy_user_session_path, method: :delete, style: "font-weight: bold;" %>
         </div>
         <p>Version 1.0</p>
       </ul>

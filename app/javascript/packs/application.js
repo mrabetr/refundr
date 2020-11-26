@@ -27,10 +27,13 @@ import { hamburgerHider } from "../files/navbar";
 import { activePage } from "../files/navbar";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { fetchCurrentPositionWeather } from '../files/weather';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   hamburgerHider();
   activePage();
+  fetchCurrentPositionWeather();
 });
