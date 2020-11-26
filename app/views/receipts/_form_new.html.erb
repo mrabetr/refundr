@@ -4,6 +4,19 @@
   <%= f.input :shop_address %>
   <%= f.input :transaction_no %>
   <%= f.input :date %>
+  <%= f.simple_fields_for :items do |b| %>
+    <div id="fieldsetContainer">
+      <fieldset id="0">
+        <div class="d-flex">
+          <div><%= b.input :quantity, label: "Qt" %></div>
+          <div class="flex-grow-1"><%= b.input :description, label: "Item" %></div>
+          <div><%= b.input :price_cents, label: "Price" %></div>
+        </div>
+        <%= content_tag('a', 'Remove Item', id: "del-"+b.index.to_s, class:"badge badge-danger align-self-center")   %>
+      </fieldset>
+      <% end %>
+    </div>
+  <p class="badge badge-success align-self-center" style="cursor: pointer;" id="addItem">Add more Items</p>
   <%= f.input :total %>
   <%= f.input :total_excl_vat %>
   <%= f.submit class: "btn btn-warning button w-100" %>

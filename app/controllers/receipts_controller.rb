@@ -7,7 +7,7 @@ class ReceiptsController < ApplicationController
 
   def new
     @trip = Trip.find(params[:trip_id])
-    @receipt = Receipt.new
+    @receipt = Receipt.new; @receipt.items.build
   end
 
   def create
@@ -25,13 +25,13 @@ class ReceiptsController < ApplicationController
   end
 
   def edit
-    @receipt = Receipt.find(params[:id])
+    @receipt = Receipt.find(params[:id]); @receipt.items.build
   end
 
   def update
     @receipt = Receipt.find(params[:id])
 
-    if @receipt.update(receipt_params)
+    if @receipt.update_attributes(receipt_params)
       redirect_to receipt_path(@receipt)
     else
       render :edit
@@ -54,7 +54,7 @@ class ReceiptsController < ApplicationController
 
   def receipt_params
     params.require(:receipt).permit(:shop, :shop_vat_no, :shop_address,
-      :transaction_no, :date, :total, :total_excl_vat)
+      :transaction_no, :date, :total, :total_excl_vat, items_attributes:[:quantity, :description, :price_cents, :_destroy])
   end
 
 end

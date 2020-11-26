@@ -13,11 +13,9 @@
   <ol>
     <% @receipt.items.each do |item| %>
       <li><%= item.quantity %>x <%= item.description %> £<%= item.price_cents %></li>
-      <td><%= link_to 'Edit', edit_item_path(item) %></td>
       <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </ol>
-  <%= link_to "Add item", new_receipt_item_path(@receipt) %>
   <%= link_to "Back to trip", trip_path(@trip) %>
   <%= link_to "Edit", edit_receipt_path(@receipt) %>
   <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning delete-button" %>
