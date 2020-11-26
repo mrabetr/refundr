@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
   resources :receipts, only: [:show, :edit, :update, :destroy]
   resources :forms, only: [:index, :show]
-  resources :items, only: :destroy
+  resources :items, only: [:edit, :update, :destroy]
 
 end
