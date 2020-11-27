@@ -25,6 +25,8 @@ gem 'money-rails'
 gem 'country_select', '~> 4.0'
 gem 'geocoder'
 gem "chartkick"
+gem "google-cloud-vision"
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

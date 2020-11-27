@@ -1,8 +1,8 @@
-<div class="container my-3">
-  <div class="row justify-content-center">
-    <div class="col-xs-12 col-sm-4">
-      <h2>Edit item</h2>
-      <%= render "form_edit", item: @item %>
-    </div>
+<%= simple_form_for(@item) do |f| %>
+  <div class="d-flex">
+    <div><%= f.input :quantity, label: "Qt" %></div>
+    <div class="flex-grow-1"><%= f.input :description, label: "Item" %></div>
+    <div><%= f.input :price, label: "Price" %></div>
   </div>
-</div>
+  <%= f.submit class: "btn btn-warning button w-100" %>
+<% end %>
