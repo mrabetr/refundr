@@ -14,11 +14,28 @@
     cursor: pointer;
   }
 }
-.logo {
-  position: relative;
-  left: 15em;
-  transform: translateX(2em);
+
+@-webkit-keyframes rotating {
+  from{
+    -webkit-transform: rotate(0deg);
+  }
+  to{
+    -webkit-transform: rotate(360deg);
+  }
 }
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  font-size: 2em;
+}
+
+.hidden {
+  display: none;
+}
+// .logo {
+//   position: relative;
+//   left: 15em;
+//   transform: translateX(2em);
+// }
 
 .menu {
   position: absolute;

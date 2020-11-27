@@ -8,8 +8,11 @@
       </div>
     </div>
     <div class="flex-row-reverse ml-auto align-items-end mw-30">  
-      <h5 class="ml-auto pt-2 mb-0"><span id="city"></span>, <span id="country"></span></h5>
-      <h6 class="ml-auto d-flex justify-content-end"><!-- <span id="description" style="color: gray"></span> --> <span id="temperature" style="color: gray; padding-top: 1em"></span><img id="icon" style="height: 2em, width: 2em" loading="Loading weather" src=""></h6>
+      <i id="spinner" class="fa fa-spinner rotating mr-4 mt-3"></i> 
+      <div id="weather" class="hidden">
+        <h5 class="ml-auto pt-2 mb-0"><span id="city"></span>, <span id="country"></span></h5>
+        <h6 class="ml-auto d-flex justify-content-end"><span id="temperature" style="color: gray; padding-top: 1em"></span><img id="icon" style="height: 2em, width: 2em" src=""></h6>
+      </div>
     </div>
   </div>
   <div class="menu" id="menu">
