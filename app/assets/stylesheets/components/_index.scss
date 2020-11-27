@@ -5,7 +5,7 @@
 @import "navbar";
 @import "buttons";
 @import "map";
-
+@import "trip-tables";
 body {
   color: #102542;
   a {
@@ -14,6 +14,9 @@ body {
   }
   ul {
     list-style: none;
+  }
+  li {
+    color: #102542;
   }
 }
 
@@ -25,6 +28,7 @@ a:hover {
 header {
   width: 100%;
   height: 90vh;
+  margin-top: 80px;
 }
 
 

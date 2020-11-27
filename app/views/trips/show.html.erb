@@ -36,7 +36,11 @@
   <%= link_to 'Back to trips', trips_path %>
 </div>
 
-<%= simple_form_for ([@trip, @form]) do |f| %>
-  <%= f.submit value: "Generate form", class: "btn btn-warning button" %>
+<% if @trip.current == true %>
+  <%= simple_form_for ([@trip, @form]) do |f| %>
+    <%= f.submit value: "Generate form", class: "btn btn-warning button" %>
+  <% end %>
+<% else %>
+  <%= link_to "Go to form", form_path(@currentform) %>
 <% end %>
 

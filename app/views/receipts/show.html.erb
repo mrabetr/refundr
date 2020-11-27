@@ -9,7 +9,9 @@
     <li>Total: <%= humanized_money_with_symbol(@receipt.total) %></li>
     <li>Total excl VAT: <%= humanized_money_with_symbol(@receipt.total_excl_vat) %></li>
   </ul>
+  <% if @receipt.photo.attached? %>
   <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
   <h3>Items bought:</h3>
   <ol>
     <% @receipt.items.each do |item| %>
