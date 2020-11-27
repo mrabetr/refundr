@@ -1,7 +1,37 @@
  <% if current_user.trips.last.present? %>
    <% if current_user.trips.last.current == true %>
-    <h2>Current trip</h2>
-    <%= link_to 'Add a receipt', new_trip_receipt_path(current_user.trips.last), class: "btn btn-warning button" %>
+    <h2><%= current_user.trips.last.country_name %></h2>
+    <% total_counter = 0 %>
+    <% excvat_counter = 0 %>
+    <% current_user.trips.last.receipts.each do |receipt| %>
+      <% total_counter += receipt.total %>
+      <% excvat_counter += receipt.total_excl_vat %>
+    <% end %>
+    <% vat_save = total_counter - excvat_counter %>
+
+
+    <%= pie_chart({"Spending" => excvat_counter.to_i, "Reclaimable VAT" => vat_save.to_i}, colors: ["#FFAC30", "#F87060"]) %>
+     <table class="table">
+       <thead>
+         <tr>
+           <th scope="col" style="width: 20%;">Retailer</th>
+           <th scope="col" style="width: 20%;">Total</th>
+           <th scope="col" style="width: 25%;">exc.VAT</th>
+           <th scope="col" style="width: 35%;">Date</th>
+         </tr>
+       </thead>
+       <tbody>
+          <% current_user.trips.last.receipts.each do |receipt| %>
+          <tr>
+            <td><%= receipt.shop%></td>
+            <td><%= humanized_money_with_symbol(receipt.total) %></td>
+            <td><%= humanized_money_with_symbol(receipt.total_excl_vat) %></td>
+            <td><%= receipt.date %></td>
+          </tr>
+          <% end %>
+       </tbody>
+     </table>
+    <%= link_to 'Add a receipt', new_trip_receipt_path(current_user.trips.last), class: "btn btn-warning button button-placement" %>
    <% end %>
   <% else %>
   <div class="map-elements">
@@ -9,13 +39,5 @@
     <%= link_to 'Add trip', new_trip_path, class: "btn btn-warning button add-trip" %>
   </div>
   <% end %>
-
-
-
-
-
-
-
-
 
 
