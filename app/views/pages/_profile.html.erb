@@ -34,6 +34,7 @@
     <%= link_to 'Add a receipt', new_trip_receipt_path(current_user.trips.last), class: "btn btn-warning button button-placement" %>
    <% end %>
   <% else %>
+  <h2 style="text-align: center;">Reclaim VAT</h2>
   <div class="map-elements">
     <img src='<%= asset_path 'London.png' %>' alt="" class= "map">
     <%= link_to 'Add trip', new_trip_path, class: "btn btn-warning button add-trip" %>
