@@ -1,3 +1,16 @@
+// const stickyNavbar = () => {
+//   const navbar = document.querySelector("#navbar");
+//   const sticky = navbar.offsetTop;
+
+//   navbar.addEventListener('scroll', (event) => {
+//     if (window.pageYOffset >= sticky) {
+//     navbar.classList.add("sticky")
+//     } else {
+//     navbar.classList.remove("sticky");
+//     };
+//   })
+// }
+
 const hamburgerHider = () => {
   const menu = document.querySelector('#menu');
   const hamburger = document.querySelector('#hamburger');
@@ -12,6 +25,8 @@ const hamburgerHider = () => {
     };
   })  
 }
+
+
 
 const activePage = () => {
   const currentLocation = location.href
