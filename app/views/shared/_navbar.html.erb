@@ -1,9 +1,15 @@
 <% if !current_user.nil? %>
-  <div class="menu-wrap d-flex justify-content-sm-between h-20">
-    <div class="hamburger" id='hamburger'><img src="<%= asset_path 'U_orange.png' %>" width="40" height="65"></div>
-    <div class="flex-row-reverse ml-auto align-items-end">  
-      <h5 class="ml-auto pl-5 pt-2 mb-0"><span id="city"></span>, <span id="country"></span></h5>
-      <h6 class="ml-auto pl-5"><span id="description" style="color: gray"></span> <span id="temperature" style="color: gray"></span><img id="icon" class="justify-content-end" style="height: 2em, width: 2em" src=""></h6>
+  <div class="menu-wrap d-flex justify-content-sm-between h-20 mw-20" id="navbar">
+    <div class="hamburger" id='hamburger'>
+      <img class="d-md-none mt-1" src="<%= asset_path 'U_orange.png' %>" width="30" height="50">
+      <div class="d-md-inline d-none">
+        <i class="fas fa-bars"></i>
+        <img class="logo" src="<%= asset_path 'Logo2.png' %>" width="210" height="65" alt="">
+      </div>
+    </div>
+    <div class="flex-row-reverse ml-auto align-items-end mw-30">  
+      <h5 class="ml-auto pt-2 mb-0"><span id="city"></span>, <span id="country"></span></h5>
+      <h6 class="ml-auto d-flex justify-content-end"><!-- <span id="description" style="color: gray"></span> --> <span id="temperature" style="color: gray; padding-top: 1em"></span><img id="icon" style="height: 2em, width: 2em" loading="Loading weather" src=""></h6>
     </div>
   </div>
   <div class="menu" id="menu">
