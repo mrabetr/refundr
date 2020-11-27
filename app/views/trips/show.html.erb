@@ -41,6 +41,6 @@
     <%= f.submit value: "Generate form", class: "btn btn-warning button" %>
   <% end %>
 <% else %>
-  <%= link_to "Go to form", form_path(@currentform) %>
+  <%= link_to "Go to form", form_path(Form.find(params[:id])) %>
 <% end %>
 
