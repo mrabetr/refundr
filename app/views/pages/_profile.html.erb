@@ -1,15 +1,20 @@
-<h1>Profile</h1>
+ <% if current_user.trips.last.present? %>
+   <% if current_user.trips.last.current == true %>
+    <h2>Current trip</h2>
+    <%= link_to 'Add a receipt', new_trip_receipt_path(current_user.trips.last), class: "btn btn-warning button" %>
+   <% end %>
+  <% else %>
+  <div class="map-elements">
+    <img src='<%= asset_path 'London.png' %>' alt="" class= "map">
+    <%= link_to 'Add trip', new_trip_path, class: "btn btn-warning button add-trip" %>
+  </div>
+  <% end %>
 
 
-<h2>Current trip</h2>
 
-<!-- need to work this out -->
 
- <%= link_to 'Add a trip', new_trip_path, class: "btn btn-warning button" %>
 
-<!-- <h2>Current trip: <%= current_user.user_location %></h2> -->
 
-<%= link_to 'My trips', trips_path %>
 
 
 

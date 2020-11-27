@@ -11,11 +11,10 @@ Rails.application.routes.draw do
   end
 
   resources :receipts, only: [:show, :edit, :update, :destroy] do
-  	resources :items, only: [:new, :create]
     get :edit_photo, on: :member
     patch :update_photo, on: :member
   end
-  resources :items, only: [:edit, :update, :destroy]
-  resources :forms, only: [:index, :show]
 
+  resources :forms, only: [:index, :show]
+  resources :items, only: [:edit, :update, :destroy]
 end

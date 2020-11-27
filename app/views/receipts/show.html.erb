@@ -6,7 +6,7 @@
     <li>Address: <%= @receipt.shop_address %></li>
     <li>Transaction no: <%= @receipt.transaction_no %></li>
     <li>Date: <%= @receipt.date %></li>
-    <li>Total: <%= humanized_money_with_symbol(@receipt.total) %></li>
+    <li>Total: <%= humanized_money_with_symbol(@total) %></li>
     <li>Total excl VAT: <%= humanized_money_with_symbol(@receipt.total_excl_vat) %></li>
   </ul>
   <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill %>
@@ -14,11 +14,10 @@
   <ol>
     <% @receipt.items.each do |item| %>
       <li><%= item.quantity %>x <%= item.description %> £<%= item.price_cents %></li>
-      <td><%= link_to 'Edit', edit_item_path(item) %></td>
+      <td><%= link_to 'edit', edit_item_path(item) %></td>
       <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </ol>
-  <%= link_to "Add item", new_receipt_item_path(@receipt) %>
   <%= link_to "Back to trip", trip_path(@trip) %>
   <%= link_to "Edit", edit_receipt_path(@receipt) %>
   <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning delete-button" %>
