@@ -2,11 +2,11 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    @trips = Trip.all
+    @trips = Trip.where(user: current_user).order(current: :DESC).limit(3)
   end
 
   def show
-    @receipts = Receipt.where(trip_id: @trip).order(created_at: :desc)
+    @receipts = Receipt.where(user: current_user, trip_id: @trip).order(created_at: :desc)
     @form = Form.new
   end
 
@@ -17,6 +17,7 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.user = current_user
+    @trip.current = true
     if @trip.save
       current_user.trips.where(current: true).where.not(id: @trip.id).update_all(current: false)
       redirect_to trip_path(@trip)

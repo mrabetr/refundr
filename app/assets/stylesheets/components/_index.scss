@@ -6,6 +6,11 @@
 @import "buttons";
 @import "map";
 
+@import "trip-tables";
+
+@import "pie-chart";
+
+
 body {
   color: #102542;
   a {
@@ -14,6 +19,9 @@ body {
   }
   ul {
     list-style: none;
+  }
+  li {
+    color: #102542;
   }
 }
 

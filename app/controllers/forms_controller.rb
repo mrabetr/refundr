@@ -1,6 +1,6 @@
 class FormsController < ApplicationController
   def index
-    @forms = Form.all
+    @forms = Form.where(user: current_user)
   end
 
   def show
@@ -15,7 +15,7 @@ class FormsController < ApplicationController
     @user = current_user
     @form.trip = @trip
     @form.user = @user
-
+    @trip.update(current: false)
     if @form.save
       redirect_to form_path(@form)
     else

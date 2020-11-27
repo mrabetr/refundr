@@ -1,9 +1,34 @@
-<h1>Trips</h1>
+<div class="trip-container">
+  <h3>Your Trips</h3>
+  <ul>
+    <% @trips.each do |trip| %>
+      <div class="trip-tables">
+        <% if trip.current == true %>
+          <li class="active-trip"><%= trip.country_name%></li>
+        <% else %>
+          <li class="bg-light"><%= trip.country_name %></li>
+        <% end %>
+          <li class="bg-light"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></li>
+        <% if trip.receipts.empty? %>
+          <li class="bg-light">There are no current receipts</li>
+          <% if trip.current == true %>
+            <li class="bg-light"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></li>
+          <% else %>
+            <li class="bg-light d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></li>
+          <% end %>
+        <% else %>
+          <div class="d-flex">
+            <li class="bg-light"><% trip.receipts.each do |receipt| %> <%= "#{receipt.shop} | "%><% end %></li>
+          </div>
+            <li class="bg-light"><%= "Total spent: #{humanized_money_with_symbol(trip.total)}" %></li>
+          <% if trip.current == true %>
+            <li class="bg-light d-flex justify-content-between"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %><div><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></div></li> 
+          <% else %>
+            <li class="bg-light d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></li>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </ul>
+</div>
 
-<ul>
-  <% @trips.each do |trip| %>
-  <li><%= link_to trip.country_name, trip_path(trip) %></li>
-<% end %>
-</ul>
-
- <%= link_to 'Add a trip', new_trip_path, class: "btn btn-warning button" %>

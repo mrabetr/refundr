@@ -15,10 +15,10 @@ class OcrService
     image_annotator = Google::Cloud::Vision.image_annotator
 
     # [START vision_text_detection_migration]
-    response = image_annotator.document_text_detection(
-      image:       image_path,
-      max_results: 1 # optional, defaults to 10
-    )
+    # response = image_annotator.document_text_detection(
+    #   image:       image_path,
+    #   max_results: 1 # optional, defaults to 10
+    # )
 
     # Performs text detection on the image file
     # response.responses.each do |res|
@@ -31,7 +31,7 @@ class OcrService
 
     # Performs text detection on image file returning the main string
     # puts response.responses.first.text_annotations.first.description
-    array = response.responses.first.text_annotations.first.description.split("\n")
+    # array = response.responses.first.text_annotations.first.description.split("\n")
     # p array
     # results = array.select { |text| text.include? "Тахable" }
     # p index = array.find_index { |item| item == "Total" }
