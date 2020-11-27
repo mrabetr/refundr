@@ -1,6 +1,6 @@
  <% if current_user.trips.last.present? %>
    <% if current_user.trips.last.current == true %>
-    <h2><%= current_user.trips.last.country_name %></h2>
+    <h2 style="text-align: center;"><%= current_user.trips.last.country_name %></h2>
     <% total_counter = 0 %>
     <% excvat_counter = 0 %>
     <% current_user.trips.last.receipts.each do |receipt| %>
@@ -9,8 +9,12 @@
     <% end %>
     <% vat_save = total_counter - excvat_counter %>
 
+    <div class="pie_chart">
+      <%= pie_chart({"Spending" => excvat_counter.to_i, "Reclaimable VAT" => vat_save.to_i}, legend: false, colors: ["#FFAC30", "#F87060"], dataLabels: { enabled: false }, id: "chart") %>
+      <p class="key", id="excvat"><%= "£#{excvat_counter.to_i}.00" %></p>
+      <p class="key", id="vatsave"><%= "£#{vat_save.to_i}.00"%></p>
+    </div>
 
-    <%= pie_chart({"Spending" => excvat_counter.to_i, "Reclaimable VAT" => vat_save.to_i}, colors: ["#FFAC30", "#F87060"]) %>
      <table class="table">
        <thead>
          <tr>
