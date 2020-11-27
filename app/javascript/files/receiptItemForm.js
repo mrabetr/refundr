@@ -1,18 +1,20 @@
 const addItems = ()=> {
   const createButton = document.getElementById("addItem");
-  createButton.addEventListener('click', (event) => {
+  if (createButton) {
+    createButton.addEventListener('click', (event) => {
 
-    event.preventDefault()
-    const lastId = document.querySelector("#fieldsetContainer").lastElementChild.id;
+      event.preventDefault()
+      const lastId = document.querySelector("#fieldsetContainer").lastElementChild.id;
 
-    const newId = parseInt(lastId) + 1;
+      const newId = parseInt(lastId) + 1;
 
-    const newFieldset = document.querySelector('[id="0"]').outerHTML.replace(/0/g,newId);
+      const newFieldset = document.querySelector('[id="0"]').outerHTML.replace(/0/g,newId);
 
-    document.querySelector("#fieldsetContainer").insertAdjacentHTML(
-        "beforeend", newFieldset
-    );
-  });
+      document.querySelector("#fieldsetContainer").insertAdjacentHTML(
+          "beforeend", newFieldset
+      );
+    });
+  }
 }
 
 function removeField() {
