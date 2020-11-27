@@ -3,13 +3,15 @@ class OcrService
   # require 'google/cloud/vision'
   # Set up the envirenment with the API key
 
-  ENV['GOOGLE_APPLICATION_CREDENTIALS'] = Rails.root.join('app', 'services', 'refundr4.json').to_s
+  # ENV['GOOGLE_APPLICATION_CREDENTIALS'] = Rails.root.join('app', 'services', 'refundr4.json').to_s
+  # ENV['GOOGLE_APPLICATION_CREDENTIALS'] = JSON.parse(ENV.fetch('GOOGLE_APPLICATION_CREDENTIALS'))
 
   def detect_text(image_path)
     # Method requires the path of the image file to annotate
 
     # [START vision_text_detection]
     # Instantiates a client
+    # image_annotator = Google::Cloud::Vision::ImageAnnotator.new(credentials: JSON.parse(ENV.fetch('GOOGLE_APPLICATION_CREDENTIALS')))
     image_annotator = Google::Cloud::Vision.image_annotator
 
     # [START vision_text_detection_migration]
