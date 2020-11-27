@@ -24,6 +24,7 @@ gem 'redis', '~> 4.0'
 gem 'money-rails'
 gem 'country_select', '~> 4.0'
 gem 'geocoder'
+gem "chartkick"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
