@@ -103,6 +103,6 @@ class ReceiptsController < ApplicationController
 
   def receipt_params
     params.require(:receipt).permit(:shop, :shop_vat_no, :shop_address,
-      :transaction_no, :date, :total, :total_excl_vat, :photo, items_attributes:[:quantity, :description, :price_cents])
+      :transaction_no, :date, :total, :total_excl_vat, items_attributes:[:quantity, :description, :price])
   end
 end
