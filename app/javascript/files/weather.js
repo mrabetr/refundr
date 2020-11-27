@@ -19,7 +19,7 @@ const updateCard = (data) => {
 };
 
 const fetchWeatherByCoordinates = (coordinates) => {
-  fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${API_KEY}`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${API_KEY}`)
     .then(response => response.json())
     .then(updateCard);
 };
