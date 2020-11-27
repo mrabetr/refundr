@@ -8,7 +8,6 @@ class TripsController < ApplicationController
   def show
     @receipts = Receipt.where(user: current_user, trip_id: @trip).order(created_at: :desc)
     @form = Form.new
-    @currentform = Form.find(params[:id])
   end
 
   def new
