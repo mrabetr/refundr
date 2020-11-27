@@ -5,7 +5,12 @@
 @import "navbar";
 @import "buttons";
 @import "map";
+
 @import "trip-tables";
+
+@import "pie-chart";
+
+
 body {
   color: #102542;
   a {
@@ -28,7 +33,7 @@ a:hover {
 header {
   width: 100%;
   height: 90vh;
-  margin-top: 80px;
+  margin-top: 6em;
 }
 
 

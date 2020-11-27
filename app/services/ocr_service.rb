@@ -2,7 +2,8 @@ class OcrService
   # Imports the Google Cloud client library
   # require 'google/cloud/vision'
   # Set up the envirenment with the API key
-  ENV['GOOGLE_APPLICATION_CREDENTIALS'] = Rails.root.join('app', 'services', 'refundr.json').to_s
+
+  ENV['GOOGLE_APPLICATION_CREDENTIALS'] = Rails.root.join('app', 'services', 'refundr4.json').to_s
 
   def detect_text(image_path)
     # Method requires the path of the image file to annotate

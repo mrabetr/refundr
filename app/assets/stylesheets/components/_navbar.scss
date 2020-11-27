@@ -4,6 +4,9 @@
   width: 100%;
   background-color:white;
   height: 70px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
   z-index: 1;
   .hamburger {
     position: relative;
@@ -13,6 +16,28 @@
     cursor: pointer;
   }
 }
+
+@-webkit-keyframes rotating {
+  from{
+    -webkit-transform: rotate(0deg);
+  }
+  to{
+    -webkit-transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  font-size: 2em;
+}
+
+.hidden {
+  display: none;
+}
+// .logo {
+//   position: relative;
+//   left: 15em;
+//   transform: translateX(2em);
+// }
 
 .menu {
   position: absolute;
