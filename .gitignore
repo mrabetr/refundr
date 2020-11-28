@@ -39,4 +39,5 @@ yarn-debug.log*
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
-/app/services/refundr4.json
+/app/services/refundr.json
+/app/services/detect_text.rb
