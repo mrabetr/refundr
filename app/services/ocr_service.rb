@@ -32,13 +32,21 @@ class OcrService
       shop_address: result[2],
       transaction_no: result[6],
       date: result[7],
-      total: result[44].to_f,
-      total_excl_vat: result[40].to_f
+      # total: result[44].to_f,
+      # total_excl_vat: result[40].to_f
+      items_attributes: {
+        "0" => {
+          quantity: 1,
+          description: "Ladies Scarves",
+          price: 100.00
+        },
+        "1" => {
+          quantity: 2,
+          description: "Men's belt",
+          price: 150.00
+        }
+      }
     }
     return results
   end
 end
-
-image_path = 'services/photos/gucci3.jpg'
-service = OcrService.new
-service.detect_text(image_path)
