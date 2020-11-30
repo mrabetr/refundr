@@ -10,7 +10,7 @@
         <%= f.input :shop_vat_no %>
         <%= f.input :shop_address %>
         <%= f.input :transaction_no %>
-        <%= f.input :date %>
+        <%= f.input :date, as: :date, html5: true %>
         <%= f.simple_fields_for :items do |b| %>
           <%= b.input :quantity, label: "Quantity" %>
           <%= b.input :description, label: "Item" %>
