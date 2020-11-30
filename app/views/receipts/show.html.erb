@@ -1,31 +1,56 @@
 <div class="container my-3">
-  <h2>Receipt</h2>
-  <ul>
-    <li>Shop: <%= @receipt.shop %></li>
-    <li>VAT number: <%= @receipt.shop_vat_no %></li>
-    <li>Address: <%= @receipt.shop_address %></li>
-    <li>Transaction no: <%= @receipt.transaction_no %></li>
-    <li>Date: <%= @receipt.date %></li>
-    <li>Total: <%= humanized_money_with_symbol(@receipt.total) %></li>
-    <li>Total excl VAT: <%= humanized_money_with_symbol(@receipt.total_excl_vat) %></li>
-    <li>Total from controller: <%= humanized_money_with_symbol(@total) %> </li>
-  </ul>
-  <% if @receipt.photo.attached? %>
-    <%= cl_image_tag @receipt.photo.key, height: 600, width: 400, crop: :fill %>
-  <% end %>
-  <h3>Items bought:</h3>
-  <ol>
-    <% @receipt.items.each do |item| %>
-      <li><%= item.quantity %>x <%= item.description %> £<%= item.price %></li>
-      <td><%= link_to 'edit', edit_item_path(item) %></td>
-      <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </ol>
-  <%= link_to "Back to receipts", trip_path(@trip), class: "btn btn-warning button w-100" %>
-  <br>
-  <%= link_to "Edit", edit_receipt_path(@receipt) %>
-  <br>
-  <%= link_to "Edit photo", edit_photo_receipt_path(@receipt) %>
-  <br>
-  <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning delete-button w-100" %>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-6">
+      <h2 class="text-center mb-3">Receipt</h2>
+      <ul>
+        <li>Shop: <%= @receipt.shop %></li>
+        <li>VAT number: <%= @receipt.shop_vat_no %></li>
+        <li>Address: <%= @receipt.shop_address %></li>
+        <li>Transaction no: <%= @receipt.transaction_no %></li>
+        <li>Date: <%= @receipt.date %></li>
+        <li>Total: <%= humanized_money_with_symbol(@receipt.total) %></li>
+        <li>Total excl VAT: <%= humanized_money_with_symbol(@receipt.total_excl_vat) %></li>
+        <li>Total from controller: <%= humanized_money_with_symbol(@total) %> </li>
+      </ul>
+      <% if @receipt.photo.attached? %>
+        <%= cl_image_tag @receipt.photo.key, crop: :fill, class: "photo-receipt rounded" %>
+      <% end %>
+      <h3 class="text-center mb-3">Items bought:</h3>
+      <ol>
+        <% @receipt.items.each do |item| %>
+          <li><%= item.quantity %>x <%= item.description %> £<%= item.price %></li>
+          <td><%= link_to 'edit', edit_item_path(item) %></td>
+          <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </ol>
+      <%= link_to "Back to receipts", trip_path(@trip), class: "btn btn-warning button w-100" %>
+      <br>
+      <%= link_to "Edit", edit_receipt_path(@receipt) %>
+      <br>
+      <%= link_to "Edit photo", edit_photo_receipt_path(@receipt) %>
+      <br>
+      <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning delete-button w-100" %>
+      <hr>
+      <div class="card text-center">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Disabled</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
