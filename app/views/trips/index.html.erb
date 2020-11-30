@@ -4,14 +4,18 @@
     <% @trips.each do |trip| %>
       <div class="trip-tables">
         <% if trip.current == true %>
-        <li class="active-trip"><%= trip.country_name%></li>
+          <li class="active-trip"><%= trip.country_name%></li>
         <% else %>
-        <li class="bg-light"><%= trip.country_name %></li>
+          <li class="bg-light"><%= trip.country_name %></li>
         <% end %>
-        <li class="bg-light"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></li>
+          <li class="bg-light"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></li>
         <% if trip.receipts.empty? %>
-        <li class="bg-light">There are no current receipts</li>
-        <li class="bg-light"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></li>
+          <li class="bg-light">There are no current receipts</li>
+          <% if trip.current == true %>
+            <li class="bg-light"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></li>
+          <% else %>
+            <li class="bg-light d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></li>
+          <% end %>
         <% else %>
           <div class="d-flex">
             <li class="bg-light"><% trip.receipts.each do |receipt| %> <%= "#{receipt.shop} | "%><% end %></li>

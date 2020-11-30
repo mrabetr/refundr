@@ -8,11 +8,11 @@ class ReceiptsController < ApplicationController
 
     @total = 0
     @receipt.items.each do |item|
-      @total += item.price_cents
+      @total += item.price
     end
   end
 
-  def upload_photo
+  def new_photo
     @trip = Trip.find(params[:trip_id])
     @receipt = Receipt.new
   end
@@ -25,20 +25,31 @@ class ReceiptsController < ApplicationController
     @receipt.user = @user
 
     if @receipt.save
+      @data = OcrService.new.detect_text(URI.open(@receipt.photo.service_url))
+      @receipt.update(@data)
       redirect_to edit_photo_receipt_path(@receipt)
     else
-      render :upload_photo
+      render :new_photo
     end
   end
 
   def edit_photo
     find_receipt
-    @data = OcrService.new.detect_text(URI.open(@receipt.photo.service_url))
-    @receipt.update(@data)
   end
 
   def update_photo
-    update
+    find_receipt
+    total = 0
+    @receipt.items.each do |item|
+      total += item.price
+    end
+    @receipt.total = total
+    @receipt.total_excl_vat = total / 1.2
+    if @receipt.update(receipt_params)
+      redirect_to receipt_path(@receipt)
+    else
+      render :edit_photo
+    end
   end
 
   def new
@@ -54,26 +65,25 @@ class ReceiptsController < ApplicationController
     @receipt.user = @user
     total = 0
     @receipt.items.each do |item|
-      total += item.price_cents
+      total += item.price
     end
     @receipt.total = total
     if @receipt.save
       redirect_to receipt_path(@receipt)
-      # redirect_to edit_photo_receipt_path(@receipt)
     else
       render :new
     end
   end
 
   def edit
-    @receipt = Receipt.find(params[:id]);
+    @receipt = Receipt.find(params[:id])
   end
 
   def update
     @receipt = Receipt.find(params[:id])
     total = 0
     @receipt.items.each do |item|
-      total += item.price_cents
+      total += item.price
     end
     @receipt.total = total
     if @receipt.update(receipt_params)
@@ -103,6 +113,6 @@ class ReceiptsController < ApplicationController
 
   def receipt_params
     params.require(:receipt).permit(:shop, :shop_vat_no, :shop_address,
-      :transaction_no, :date, :total, :total_excl_vat, :photo, items_attributes:[:quantity, :description, :price])
+      :transaction_no, :date, :total, :total_excl_vat, :photo, items_attributes: [:id, :quantity, :description, :price])
   end
 end

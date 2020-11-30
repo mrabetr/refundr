@@ -8,9 +8,10 @@
     <li>Date: <%= @receipt.date %></li>
     <li>Total: <%= humanized_money_with_symbol(@receipt.total) %></li>
     <li>Total excl VAT: <%= humanized_money_with_symbol(@receipt.total_excl_vat) %></li>
+    <li>Total from controller: <%= humanized_money_with_symbol(@total) %> </li>
   </ul>
   <% if @receipt.photo.attached? %>
-    <%= cl_image_tag @receipt.photo.key, height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag @receipt.photo.key, height: 600, width: 400, crop: :fill %>
   <% end %>
   <h3>Items bought:</h3>
   <ol>
@@ -20,7 +21,11 @@
       <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </ol>
-  <%= link_to "Back to trip", trip_path(@trip) %>
+  <%= link_to "Back to receipts", trip_path(@trip), class: "btn btn-warning button w-100" %>
+  <br>
   <%= link_to "Edit", edit_receipt_path(@receipt) %>
-  <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning delete-button" %>
+  <br>
+  <%= link_to "Edit photo", edit_photo_receipt_path(@receipt) %>
+  <br>
+  <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning delete-button w-100" %>
 </div>

@@ -30,10 +30,11 @@
     <tbody>
       <tr>
         <td>1</td>
-        <td>123456</td>
-        <td>2</td>
-        <td>Watch</td>
-        <td>£100</td>
+        <td><%= @trip.receipts.first.items.first.id %></td>
+        <td><%= @trip.receipts.first.date %></td>
+        <td><%= @trip.receipts.first.items.first.quantity %></td>
+        <td><%= @trip.receipts.first.items.first.description %></td>
+        <td><%= @trip.receipts.first.items.first.price %></td>
       </tr>
     </tbody>
   </table>
