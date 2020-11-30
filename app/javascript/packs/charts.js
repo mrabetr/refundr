@@ -1,4 +1,4 @@
   require("chartkick");
   require("chart.js");
-  require('gruff');
+  require("gruff");
   require("highcharts");
