@@ -1,0 +1,5 @@
+meta_product_name: "Refundr"
+meta_title: "Refundr - claim VAT easily"
+meta_description: "Tax-free shopping made easy with OCR technology"
+meta_image: "cover.jpg" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
