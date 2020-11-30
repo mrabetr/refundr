@@ -80,7 +80,6 @@ class ReceiptsController < ApplicationController
   end
 
   def update
-    raise
     @receipt = Receipt.find(params[:id])
     total = 0
     @receipt.items.each do |item|
