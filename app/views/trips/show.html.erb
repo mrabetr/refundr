@@ -1,46 +1,55 @@
 <div class="container my-3">
-  <h1>Trip</h1>
-
-  <ul>
-    <li>Visited country: <%= @trip.country_name %></li>
-    <li>Arrival date: <%= @trip.arrival_date %></li>
-    <li>Departure date: <%= @trip.departure_date %></li>
-    <li>Final destination: <%= @trip.final_destination_name %></li>
-  </ul>
-
-  <h3>Receipts</h3>
-  <ul>
-    <% @receipts.each do |receipt| %>
-      <%= link_to receipt_path(receipt) do %>
-        <li>
-          Date: <%= receipt.date %>, Shop: <%= receipt.shop %>,
-          Total: <%= humanized_money_with_symbol(receipt.total) %>,
-          Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %>
-        </li>
-      <% end %>
-    <% end %>
-  </ul>
-
-  <div class= "alert-box">
-    <p><i class="fas fa-info-circle"></i> Remember to claim your VAT by 30-09-20!</p>
-  </div>
-
-  <%= link_to 'Add receipt', new_trip_receipt_path(@trip) %>
-  <br>
-  <%= link_to 'Add receipt photo', new_photo_trip_receipts_path(@trip) %>
-  <br>
-  <%= link_to 'Edit', edit_trip_path %>
-  <br>
-  <%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning delete-button" %>
-  <br>
   <%= link_to 'Back to trips', trips_path %>
+  <div class= "d-flex justify-content-between">
+  <h6>Your current trip: <%= @trip.country_name %></h6>
+  <p><%= link_to 'Edit', edit_trip_path %>|<%= link_to 'Delete', @trip, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+  <h3>Receipts</h3>
+<nav>  
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-savings-tab" data-toggle="tab" href="#nav-savings" role="tab" aria-controls="nav-savings" aria-selected="true">Savings</a>
+    <a class="nav-item nav-link" id="nav-receipts-tab" data-toggle="tab" href="#nav-receipts" role="tab" aria-controls="nav-receipts" aria-selected="false">Receipts</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-savings" role="tabpanel" aria-labelledby="nav-savings-tab">
+    <%= column_chart @metadata, stacked: true, library: { animation: { easing: 'easeOutQuad'}} %>
+  </div>
+  <div class="tab-pane fade" id="nav-receipts" role="tabpanel" aria-labelledby="nav-receipts-tab">
+    <ul>
+      <% @receipts.each do |receipt| %>
+        <%= link_to receipt_path(receipt) do %>
+          <li>
+            Date: <%= receipt.date %>, Shop: <%= receipt.shop %>,
+            Total: <%= humanized_money_with_symbol(receipt.total) %>,
+            Total excl VAT: <%= humanized_money_with_symbol(receipt.total_excl_vat) %>
+            VAT: <%= humanized_money_with_symbol(receipt.total - receipt.total_excl_vat) %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </div>
-
+  
+<div data-depth="0.6" class= "alert-box">
+  <p><i class="fas fa-info-circle"></i>Reclaim your VAT by 30-09-20!</p>
+</div>
+<div class="d-flex justify-content-between">
+  <div>
+  <%= link_to 'Add manual receipt', new_trip_receipt_path(@trip), class: "btn btn-warning" %>
+  </div>
+  <div>
+  <%= link_to 'Add receipt photo', upload_photo_trip_receipts_path(@trip), class: "btn btn-warning" %>
+  </div>
+</div>
+<br>
+<br>
+<div style="text-align: center;">
 <% if @trip.current == true %>
   <%= simple_form_for ([@trip, @form]) do |f| %>
     <%= f.submit value: "Generate form", class: "btn btn-warning button" %>
   <% end %>
 <% else %>
-  <%= link_to "Go to form", form_path(Form.find(params[:id])) %>
+  <%= link_to "Go to form", form_path(@currentform), class: "btn btn-warning button" %>
 <% end %>
-
+</div>

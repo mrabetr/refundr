@@ -1,0 +1,53 @@
+receipts = [
+  {
+    shop: gucci,
+    total: 100,
+    total_ex_vat: 80
+  },
+  {
+    shop: McDonalds,
+    total: 20,
+    total_ex_vat: 18
+  }
+]
+
+metadata = [
+  {name: "vat", data: {gucci: 20, McDonalds: 2}, stack: "1"},
+  {name: "non-vat", data: "gucci", stack: "1"},
+]
+
+
+
+
+metadata = [
+  {name: "vat", data: {}, stack: "1"},
+  {name: "non-vat", data: {}, stack: "1"},
+]
+receipts.each do |receipt|
+  vat = receipt.vat
+  non_vat = receipt.total_ex_vat
+  shop = receipt.shop
+  
+  if metadata[0][data].has_key?(shop)
+    metadata[0][data][shop] += vat
+  else
+    metadata[0][data][shop] = vat
+  end
+  
+  if metadata[1][data].has_key?(shop)
+    metadata[1][data][shop] += non_vat
+  else
+    metadata[1][data][shop] = non_vat
+  end
+end
+@metadata = metadata
+
+column_chart @metadata
+
+
+
+non_vat = 18
+shop = "mcdonalds"
+
+{"gucci": 80, "mcdonalds": 18}
+

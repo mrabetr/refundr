@@ -8,6 +8,32 @@ class TripsController < ApplicationController
   def show
     @receipts = Receipt.where(user: current_user, trip_id: @trip).order(created_at: :desc)
     @form = Form.new
+    @currentform = Form.find(params[:id])
+    
+    metadata = [
+      {name: "non-vat", data: {}, stack: "stack 1"},
+      {name: "vat", data: {}, stack: "stack 1"}
+    ]
+
+    @receipts.each do |receipt|
+      @vat = ((receipt.total - receipt.total_excl_vat).fractional)/100
+      non_vat = ((receipt.total_excl_vat).fractional)/100
+      shop = receipt.shop
+      
+      if metadata[1][:data].has_key?(shop)
+        metadata[1][:data][shop] += @vat
+      else
+        metadata[1][:data][shop] = @vat
+      end
+      
+      if metadata[0][:data].has_key?(shop)
+        metadata[0][:data][shop] += non_vat
+      else
+        metadata[0][:data][shop] = non_vat
+      end
+    end
+
+    @metadata = metadata
   end
 
   def new
