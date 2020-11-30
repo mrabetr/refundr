@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :trips do
     resources :receipts, only: [:new, :create] do
-      get :upload_photo, on: :collection
+      get :new_photo, on: :collection
       post :create_photo, on: :collection
     end
     resources :forms, only: [:create]

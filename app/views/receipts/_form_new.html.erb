@@ -1,4 +1,5 @@
 <%= simple_form_for([trip, receipt]) do |f| %>
+  <%= f.input :photo, as: :file %>
   <%= f.input :shop %>
   <%= f.input :shop_vat_no %>
   <%= f.input :shop_address %>
