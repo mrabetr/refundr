@@ -26,8 +26,8 @@ gem 'country_select', '~> 4.0'
 gem 'geocoder'
 gem "chartkick"
 gem "google-cloud-vision"
-
-
+gem 'parallax-rails'
+gem 'highcharts-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
