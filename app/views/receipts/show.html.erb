@@ -1,54 +1,81 @@
 <div class="container my-3">
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-6">
-      <h2 class="text-center mb-3">Receipt</h2>
-      <ul>
-        <li>Shop: <%= @receipt.shop %></li>
-        <li>VAT number: <%= @receipt.shop_vat_no %></li>
-        <li>Address: <%= @receipt.shop_address %></li>
-        <li>Transaction no: <%= @receipt.transaction_no %></li>
-        <li>Date: <%= @receipt.date %></li>
-        <li>Total: <%= humanized_money_with_symbol(@receipt.total) %></li>
-        <li>Total excl VAT: <%= humanized_money_with_symbol(@receipt.total_excl_vat) %></li>
-        <li>Total from controller: <%= humanized_money_with_symbol(@total) %> </li>
-      </ul>
-      <% if @receipt.photo.attached? %>
-        <%= cl_image_tag @receipt.photo.key, crop: :fill, class: "photo-receipt rounded" %>
-      <% end %>
-      <h3 class="text-center mb-3">Items bought:</h3>
-      <ol>
-        <% @receipt.items.each do |item| %>
-          <li><%= item.quantity %>x <%= item.description %> £<%= item.price %></li>
-          <td><%= link_to 'edit', edit_item_path(item) %></td>
-          <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </ol>
-      <%= link_to "Back to receipts", trip_path(@trip), class: "btn btn-warning button w-100" %>
-      <br>
-      <%= link_to "Edit", edit_receipt_path(@receipt) %>
-      <br>
-      <%= link_to "Edit photo", edit_photo_receipt_path(@receipt) %>
-      <br>
-      <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning delete-button w-100" %>
-      <hr>
-      <div class="card text-center">
-        <div class="card-header">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Disabled</a>
-            </li>
-          </ul>
-        </div>
+      <h2 class="text-center my-3">Receipt</h2>
+      <div class="card border-0 mb-3" style="width: 100%;">
+        <%= cl_image_tag "https://images.unsplash.com/photo-1561715276-a2d087060f1d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80", class: "card-img-top" %>
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p><i class="fas fa-store"></i> <%= @receipt.shop %> - <%= @receipt.shop_address %></p>
+          <h5 class="card-title"><%= humanized_money_with_symbol(@saving) %> saving</h5>
+          <hr>
+          <ul class="list-inline d-flex justify-content-between">
+            <li class="list-inline-item"><i class="fas fa-shopping-bag"></i> <%= @items %> items</li>
+            <li class="list-inline-item"><i class="fas fa-receipt"></i> <%= humanized_money_with_symbol(@receipt.total) %> total</li>
+            <li class="list-inline-item"><i class="far fa-calendar-alt"></i> <%= @receipt.date.strftime("%b %d") %></li>
+          </ul>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#photo-receipt">
+                View
+              </button>
+              <%= link_to "Edit", edit_photo_receipt_path(@receipt), class: "btn btn-sm btn-outline-secondary" %>
+              <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#items">
+                Items
+              </button>
+            </div>
+            <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+      <%= link_to "Back to receipts", trip_path(@trip), class: "btn btn-warning button w-100" %>
+
+      <!-- Original Receipt - Modal -->
+      <div class="modal fade" id="photo-receipt" tabindex="-1" role="dialog" aria-labelledby="photo-receipt-title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="photo-receipt-title">Original Receipt</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <% if @receipt.photo.attached? %>
+                <%= cl_image_tag @receipt.photo.key, crop: :fill, class: "photo-receipt rounded" %>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Items - Modal -->
+      <div class="modal fade" id="items" tabindex="-1" role="dialog" aria-labelledby="items-title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="items-title">Items bought</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <ul>
+                <% @receipt.items.each do |item| %>
+                  <li><%= link_to '', edit_item_path(item), class: "fas fa-edit" %>
+                    <%= item.quantity %> x <%= item.description %> - <%= humanized_money_with_symbol(item.price) %> -
+                    <%= link_to '', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "far fa-trash-alt" %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
