@@ -1,30 +1,29 @@
-<div class="trip-container">
+<div class="d-flex flex-column align-items-center">
   <h3>Your Trips</h3>
-  <ul>
     <% @trips.each do |trip| %>
-      <div class="trip-tables">
+      <div class="list-group rounded m-0 py-3" style="width: 300px;">
         <% if trip.current == true %>
-          <li class="active-trip"><%= trip.country_name%></li>
+          <div class="list-group-item list-group-item-action active"><%= trip.country_name%>: current</div>
         <% else %>
-          <li class="bg-light"><%= trip.country_name %></li>
+          <div class="list-group-item list-group-item-action"><%= trip.country_name %></div>
         <% end %>
-          <li class="bg-light"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></li>
+          <div class="list-group-item list-group-item-action"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></div>
         <% if trip.receipts.empty? %>
-          <li class="bg-light">There are no current receipts</li>
+          <div class="list-group-item list-group-item-action">There are no current receipts</div>
           <% if trip.current == true %>
-            <li class="bg-light"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></li>
+            <div class="list-group-item list-group-item-action"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></div>
           <% else %>
-            <li class="bg-light d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></li>
+            <div class="list-group-item list-group-item-action d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></div>
           <% end %>
         <% else %>
           <div class="d-flex">
-            <li class="bg-light"><% trip.receipts.each do |receipt| %> <%= "#{receipt.shop} | "%><% end %></li>
+            <div class="list-group-item list-group-item-action"><% trip.receipts.each do |receipt| %> <%= "#{receipt.shop} | "%><% end %></div>
           </div>
-            <li class="bg-light"><%= "Total spent: #{humanized_money_with_symbol(trip.total)}" %></li>
+            <div class="list-group-item list-group-item-action"><%= "Total spent: #{humanized_money_with_symbol(trip.total)}" %></div>
           <% if trip.current == true %>
-            <li class="bg-light d-flex justify-content-between"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %><div><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></div></li> 
+            <div class="list-group-item list-group-item-action d-flex justify-content-between"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %><div><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></div></div> 
           <% else %>
-            <li class="bg-light d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></li>
+            <div class="list-group-item list-group-item-action d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></div>
           <% end %>
         <% end %>
       </div>
