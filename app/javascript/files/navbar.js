@@ -18,10 +18,12 @@ const hamburgerHider = () => {
 
   hamburger.addEventListener('click', (event) => {
     menu.style.width = "200px";
+    menu.style.borderRight = "1px solid rgba(0, 0, 0, 0.2)";
   });
   everything.addEventListener('click', (event) => {
     if (menu.style.width == "200px") {
       menu.style.width = "0px";
+      menu.style.borderRight = "1px solid rgba(0, 0, 0, 0)";
     };
   })  
 }
