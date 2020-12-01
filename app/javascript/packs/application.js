@@ -2,7 +2,7 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-
+require("jquery")
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -46,11 +46,9 @@ document.addEventListener('turbolinks:load', () => {
     loadDynamicBannerText();
   }
   if(document.querySelector(".pie_chart")) {
-    console.log("hello")
     const table = document.querySelector(".table");
     const pieChart = document.querySelector(".pie_chart")
     document.addEventListener('scroll', (event) => {
-      console.log(window.scrollY);
       pieChart.style.top = `${window.scrollY}px`;
       table.style.top = `-${window.scrollY}px`;
     })
