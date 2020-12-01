@@ -71,6 +71,7 @@ class ReceiptsController < ApplicationController
       total += item.price
     end
     @receipt.total = total
+    @receipt.total_excl_vat = total / 1.2
     if @receipt.save
       redirect_to receipt_path(@receipt)
     else

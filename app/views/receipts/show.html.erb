@@ -10,7 +10,12 @@
           <hr>
           <ul class="list-inline d-flex justify-content-between">
             <li type="button" class="list-inline-item" data-toggle="modal" data-target="#items">
-              <i class="fas fa-shopping-bag"></i> <%= @items %> items
+              <i class="fas fa-shopping-bag"></i> <%= @items %>
+              <% if @items == 1 %>
+                <%= "item" %>
+              <% else %>
+                <%= "items" %>
+              <% end %>
             </li>
             <li type="button" class="list-inline-item" data-toggle="modal" data-target="#photo-receipt">
               <i class="fas fa-receipt"></i> <%= humanized_money_with_symbol(@receipt.total) %> total
