@@ -39,13 +39,20 @@
 //   transform: translateX(2em);
 // }
 
+#weather {
+  h5 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
 .menu {
   position: absolute;
   top: 0px;
   height: 100%;
   width: 0px;
   overflow: hidden;
-  background-color: #BFCBC2;
+  background-color: $alice-blue;
   -webkit-transition:width 200ms ease-in;
   -moz-transition:width 200ms ease-in;
   -o-transition:width 200ms ease-in;
@@ -62,7 +69,11 @@
   height: 100px;
   padding-top: 20px;
   text-align: left;
-  border-bottom: 2px solid rgba($color: black, $alpha: 0.2);
+  font-weight: 400;
+  border-bottom: 1px solid rgba($color: black, $alpha: 0.2);
+  h6 {
+    font-weight: 600;
+  }
 }
 
 .nav-menu-items {
@@ -74,7 +85,7 @@
   padding: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-bottom: 2px solid rgba($color: black, $alpha: 0.2);
+  border-bottom: 1px solid rgba($color: black, $alpha: 0.2);
   li a {
     padding: 20px;
     margin: 0px;

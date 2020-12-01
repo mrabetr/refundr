@@ -1,0 +1,80 @@
+.trip-show-main {
+  position: relative;
+}
+
+.trip-index-card {
+  color: $dark-blue;
+  width: 95%;
+  height: auto;
+  margin: 5px auto;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba($color: black, $alpha: 0.3);
+  p strong {
+    font-size: 25px;
+  }
+  p {
+    text-align: center;
+    font-weight: 500;
+  }
+  h6 {
+    font-weight: 600;
+  }
+}
+
+.add-button {
+  color: $dark-blue;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba($color: black, $alpha: 0.3);
+  height: 120px;
+  width: 170px;
+  font-size: 14px;
+  font-weight: bold;
+  i {
+    color: $our-pink;
+    font-size: 40px;
+  }
+}
+
+.receipts-box {
+  position: absolute;
+  width: 95%;
+  min-height: 280px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 20px rgba($color: black, $alpha: 0.3);
+  margin: 0px auto;
+  border-radius: 5px;
+  padding: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  top: 60%;
+  left: 0;
+  right: 0;
+  p {
+    color: black;
+    font-size: 12px;
+    opacity: 0.4;
+    font-weight: 600;
+  }
+  h6 {
+    font-weight: 600;
+  }
+  #listed-receipt {
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.2);
+    margin-bottom: 10px;
+  }
+}
+
+nav {
+  font-weight: 600;
+  .active {
+  background-color: $our-pink !important;
+  }
+}

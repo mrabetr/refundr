@@ -9,17 +9,17 @@ class TripsController < ApplicationController
     @receipts = Receipt.where(user: current_user, trip_id: @trip).order(created_at: :desc)
     @form = Form.new
     @currentform = Form.find(params[:id])
-    
+    @VatTotal = 0
     metadata = [
       {name: "non-vat", data: {}, stack: "stack 1"},
       {name: "vat", data: {}, stack: "stack 1"}
     ]
 
     @receipts.each do |receipt|
-      @vat = ((receipt.total - receipt.total_excl_vat).fractional)/100
-      non_vat = ((receipt.total_excl_vat).fractional)/100
+      @vat = ((receipt.total - receipt.total_excl_vat).fractional)/100.to_f
+      non_vat = ((receipt.total_excl_vat).fractional)/100.to_f
       shop = receipt.shop
-      
+      @VatTotal += @vat  
       if metadata[1][:data].has_key?(shop)
         metadata[1][:data][shop] += @vat
       else
@@ -35,6 +35,7 @@ class TripsController < ApplicationController
 
     @metadata = metadata
   end
+
 
   def new
     @trip = Trip.new

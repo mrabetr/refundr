@@ -1,56 +1,51 @@
- <% if current_user.trips.last.present? %>
-   <% if current_user.trips.last.current == true %>
-    <h3 class="header">Current spending</h3>
-    <% total_counter = 0 %>
-    <% excvat_counter = 0 %>
-    <% current_user.trips.last.receipts.each do |receipt| %>
-      <% total_counter += receipt.total %>
-      <% excvat_counter += receipt.total_excl_vat %>
-    <% end %>
-    <% vat_save = total_counter - excvat_counter %>
-
-
-    <div class="pie_chart">
-      <%= pie_chart({"Spending" => excvat_counter.to_i, "Reclaimable VAT" => vat_save.to_i}, legend: false, colors: ["#FFAC30", "#F87060"], donut: true, library: {cutoutPercentage: 70}, dataLabels: { enabled: false }, id: "chart") %>
-      <p class="key", id="refund"><%= "Refundable of" %></p>
-      <p class="key", id="total"><%= "£#{total_counter.to_i}.00" %></p>
-      <p class="key", id="vatsave"><%= "£#{vat_save.to_i}.00"%></p>
-    </div>
-
-     <table class="table">
-      <thead>
-        <tr>
-          <td></td>
-          <td id="addy"><%= link_to 'Add Receipt', new_trip_receipt_path(current_user.trips.last), id: "add-receipt" %></td>
-        </tr>
-      </thead>
-       <tbody>
-          <% grouped_receipts = current_user.trips.last.receipts.group_by{ |t| t.date} %>
-          <% grouped_receipts.each do | date, info | %>
-          <% date_total = 0 %>
-          <% info.each do |receipt| %>
-          <% date_total += receipt[:total_cents].to_i %>
-          <% end %>
-          <tr>
-            <td class="dates"><%= "#{date.strftime("%A, %d %b")}" %></td>
-            <td class="dates", id="amount"><%= "£#{date_total}.00" %></td>
-          </tr>
-          <% info.each do |receipt| %>
-          <tr>
-            <td id="shop"><%= "#{receipt[:shop]}" %></td>
-            <td id="price"><%= "£#{receipt[:total_cents].to_i}.00" %></td>
-          </tr>
-          <% end %>
-          <% end %>
-              <% 10.times do %>
-          <tr>
-            <td></td>
-          </tr>
-          <% end %>
-       </tbody>
-     </table>
-   <% end %>
-  <% else %>
+<% if current_user.trips.last.current == true %>
+  <h3 class="header">Current spending</h3>
+  <% total_counter = 0 %>
+  <% excvat_counter = 0 %>
+  <% current_user.trips.last.receipts.each do |receipt| %>
+    <% total_counter += receipt.total %>
+    <% excvat_counter += receipt.total_excl_vat %>
+  <% end %>
+  <% vat_save = total_counter - excvat_counter %>
+  <div class="pie_chart">
+    <%= pie_chart({"Spending" => excvat_counter.to_i, "Reclaimable VAT" => vat_save.to_i}, legend: false, colors: ["#FFAC30", "#F87060"], donut: true, library: {cutoutPercentage: 70}, dataLabels: { enabled: false }, id: "chart") %>
+    <p class="key", id="refund"><%= "Refundable of" %></p>
+    <p class="key", id="total"><%= "£#{total_counter.to_i}.00" %></p>
+    <p class="key", id="vatsave"><%= "£#{vat_save.to_i}.00"%></p>
+  </div>
+  <table class="table">
+   <thead>
+     <tr>
+       <td></td>
+       <td id="addy"><%= link_to 'Add Receipt', new_trip_receipt_path(current_user.trips.last), id: "add-receipt" %></td>
+     </tr>
+   </thead>
+    <tbody>
+       <% grouped_receipts = current_user.trips.last.receipts.group_by{ |t| t.date} %>
+       <% grouped_receipts.each do | date, info | %>
+         <% date_total = 0 %>
+         <% info.each do |receipt| %>
+           <% date_total += receipt[:total_cents].to_i %>
+         <% end %>
+           <tr>
+             <td class="dates"><%= "#{date.strftime("%A, %d %b")}" %></td>
+             <td class="dates", id="amount"><%= "£#{date_total}.00" %></td>
+           </tr>
+         <% info.each do |receipt| %>
+           <tr>
+             <td id="shop"><%= "#{receipt[:shop]}" %></td>
+             <td id="price"><%= "£#{receipt[:total_cents].to_i}.00" %></td>
+           </tr>
+         <% end %>
+       <% end %>
+       <% 10.times do %>
+         <tr>
+           <td></td>
+         </tr>
+       <% end %>
+    </tbody>
+  </table>
+<% else %>
   <h2 style="text-align: center;">Reclaim VAT</h2>
   <div class="map-elements">
     <img src='<%= asset_path 'London.png' %>' alt="" class= "map">
