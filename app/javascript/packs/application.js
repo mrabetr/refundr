@@ -27,7 +27,6 @@ import { hamburgerHider } from "../files/navbar";
 import { activePage } from "../files/navbar";
 import { addItems } from "../files/receiptItemForm";
 import { removeField } from "../files/receiptItemForm";
-import { scrollFunction } from "../files/scroll-function"
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { fetchCurrentPositionWeather } from '../files/weather';
@@ -37,18 +36,15 @@ import { fetchCurrentPositionWeather } from '../files/weather';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  scrollFunction();
   removeField();
   hamburgerHider();
   activePage();
   addItems();
   fetchCurrentPositionWeather();
   if(document.querySelector(".pie_chart")) {
-    console.log("hello")
     const table = document.querySelector(".table");
     const pieChart = document.querySelector(".pie_chart")
     document.addEventListener('scroll', (event) => {
-      console.log(window.scrollY);
       pieChart.style.top = `${window.scrollY}px`;
       table.style.top = `-${window.scrollY}px`;
     })
