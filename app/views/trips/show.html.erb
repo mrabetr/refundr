@@ -56,6 +56,6 @@
     <%= f.submit value: "Generate form", class: "btn btn-warning button" %>
   <% end %>
 <% else %>
-  <%= link_to "Go to form", form_path(@currentform), class: "btn btn-warning button" %>
+  <%= link_to "Go to form", trip_forms_path(@trip), class: "btn btn-warning button" %>
 <% end %>
 </div>
