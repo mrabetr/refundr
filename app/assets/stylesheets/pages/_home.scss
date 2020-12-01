@@ -1,1 +1,38 @@
 // Specific CSS for your home-page
+.shopping_video {
+ width: 100vw;
+ height: 100vh;
+ position: absolute;
+ display: flex;
+ justify-content: center;
+ object-fit: cover;
+ top: 0;
+ z-index: -2;
+}
+
+#everything {
+  margin-top: none;
+}
+
+.navbar {
+  display: none;
+}
+
+.showcase-inner {
+  margin-top: none!important;
+  padding: 0px!important;
+  height: 500px;
+}
+
+#logo {
+  position: absolute;
+  top: 55%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#entice {
+  text-align: center;
+}
+
+

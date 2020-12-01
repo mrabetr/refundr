@@ -30,6 +30,7 @@ import { removeField } from "../files/receiptItemForm";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { fetchCurrentPositionWeather } from '../files/weather';
+import { loadDynamicBannerText } from '../plugins/home_banner';
 
 
 
@@ -41,6 +42,9 @@ document.addEventListener('turbolinks:load', () => {
   activePage();
   addItems();
   fetchCurrentPositionWeather();
+  if(document.querySelector('#banner-typed-text')) {
+    loadDynamicBannerText();
+  }
   if(document.querySelector(".pie_chart")) {
     console.log("hello")
     const table = document.querySelector(".table");
