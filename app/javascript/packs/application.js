@@ -31,6 +31,7 @@ import { removeField } from "../files/receiptItemForm";
 // import { initSelect2 } from '../components/init_select2';
 import { fetchCurrentPositionWeather } from '../files/weather';
 import { loadDynamicBannerText } from '../plugins/home_banner';
+import { initSelect2 } from '../plugins/init_select2';
 
 
 
@@ -52,6 +53,9 @@ document.addEventListener('turbolinks:load', () => {
       pieChart.style.top = `${window.scrollY}px`;
       table.style.top = `-${window.scrollY}px`;
     })
+  }
+  if (document.querySelector(".select2")) {
+    initSelect2();
   }
 });
 
