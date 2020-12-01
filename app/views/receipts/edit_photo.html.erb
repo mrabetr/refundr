@@ -1,23 +1,43 @@
 <div class="container my-3">
   <div class="row justify-content-center">
-    <div class="col-xs-12 col-sm-4">
-      <h2>Please validate receipt</h2>
+    <div class="col-xs-12 col-sm-6">
+      <h2 class="text-center mb-3">Review Details</h2>
       <% if @receipt.photo.attached? %>
-        <%= cl_image_tag @receipt.photo.key, height: 600, width: 400, crop: :fill %>
+        <%= cl_image_tag @receipt.photo.key, crop: :fill, class: "photo-receipt" %>
       <% end %>
       <%= simple_form_for(@receipt, url: update_photo_receipt_path(@receipt)) do |f| %>
-        <%= f.input :shop %>
-        <%= f.input :shop_vat_no %>
-        <%= f.input :shop_address %>
-        <%= f.input :transaction_no %>
-        <%= f.input :date, as: :date, html5: true %>
+        <div class="form-row">
+          <div class="col-6 form-group mb-0">
+            <%= f.input :shop, label: "Store" %>
+          </div>
+          <div class="col-6 form-group mb-0">
+            <%= f.input :shop_vat_no, label: "VAT nunmber" %>
+          </div>
+        </div>
+        <%= f.input :shop_address, label: "Address" %>
+        <div class="form-row">
+          <div class="col-6 form-group mb-0">
+            <%= f.input :transaction_no, label: "Transaction number" %>
+          </div>
+          <div class="col-6 form-group mb-0">
+            <%= f.input :date, as: :date, html5: true, label: "Date of purchase" %>
+          </div>
+        </div>
+        <hr>
         <%= f.simple_fields_for :items do |b| %>
-          <%= b.input :quantity, label: "Quantity" %>
           <%= b.input :description, label: "Item" %>
-          <%= b.input :price, label: "Price" %>
+          <div class="form-row">
+            <div class="col-6 form-group mb-0">
+              <%= b.input :quantity, label: "Quantity" %>
+            </div>
+            <div class="col-6 form-group mb-0">
+              <%= b.input :price, label: "Price" %>
+            </div>
+          </div>
         <% end %>
-        <%= f.submit value: "Validate Receipt", class: "btn btn-warning button w-100" %>
+        <%= f.submit value: "Validate Receipt", class: "btn btn-warning button mb-3 w-100" %>
       <% end %>
+      <%= link_to "Back to Receipt", receipt_path(@receipt) %>
     </div>
   </div>
 </div>

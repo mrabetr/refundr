@@ -10,6 +10,7 @@ class TripsController < ApplicationController
     @form = Form.new
     @currentform = Form.find(params[:id])
     @VatTotal = 0
+
     metadata = [
       {name: "non-vat", data: {}, stack: "stack 1"},
       {name: "vat", data: {}, stack: "stack 1"}
@@ -77,7 +78,7 @@ class TripsController < ApplicationController
     params.require(:trip).permit(:arrival_date, :departure_date, :final_destination, :country)
   end
 
-  def  eu_countries
-    @eu_countries = ["BE", "BG", "CZ", "DK", "DE", "EE", "IE", "EL", "ES", "FR", "HR", "IT", "CY", "LV", "LT", "LU", "HU", "MT", "NL", "AT", "PL", "PT", "RO", "SI", "SK", "FI", "SE", "UK"]
+  def eu_countries
+    @eu_countries = ["BE", "BG", "CZ", "DK", "DE", "EE", "IE", "EL", "ES", "FR", "HR", "IT", "CY", "LV", "LT", "LU", "HU", "MT", "NL", "AT", "PL", "PT", "RO", "SI", "SK", "FI", "SE", "GB"]
   end
 end

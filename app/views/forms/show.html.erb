@@ -1,55 +1,152 @@
 <div class="container">
-  <h1>Custom's Form 407</h1>
+  <h1>VAT Form 407</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h2>Part B: Goods description</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 10%;">Item</th>
+              <th scope="col" style="width: 10%;">Receipt Number</th>
+              <th scope="col" style="width: 10%;">Date</th>
+              <th scope="col" style="width: 10%;">Quantity</th>
+              <th scope="col" style="width: 40%;">Description</th>
+              <th scope="col" style="width: 20%;">Price incl VAT</th>
+            </tr>
+          </thead>
+          <style>
+          .ordered {
+          counter-reset: rowNumber;
+          }
 
-  <h2>Part A: Customer's declaration</h2>
-  <ul>
-    <li>Title: <%= @user.title %></li>
-    <li>Last Name: <%= @user.first_name %></li>
-    <li>First Name: <%= @user.last_name %></li>
-    <li>Permanent Address: <%= @user.address %></li>
-    <li>Passport Number: <%= @user.passport_no %></li>
-    <li>Issued by Government of <%= @user.passport_country_name %></li>
-    <li>EU Arrival on: <%= @trip.arrival_date %></li>
-    <li>EU Departure on: <%= @trip.departure_date %></li>
-    <li>Final Destination: <%= @trip.final_destination_name %></li>
-  </ul>
-  <p>Signature and date</p>
+          .ordered tr {
+          counter-increment: rowNumber;
+          }
 
-  <h2>Pasrt B: Goods description</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col" style="width: 10%;">Item</th>
-        <th scope="col" style="width: 10%;">Receipt Number</th>
-        <th scope="col" style="width: 10%;">Date</th>
-        <th scope="col" style="width: 10%;">Quantity</th>
-        <th scope="col" style="width: 40%;">Description</th>
-        <th scope="col" style="width: 20%;">Price incl VAT</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td><%= @trip.receipts.first.items.first.id %></td>
-        <td><%= @trip.receipts.first.date %></td>
-        <td><%= @trip.receipts.first.items.first.quantity %></td>
-        <td><%= @trip.receipts.first.items.first.description %></td>
-        <td><%= @trip.receipts.first.items.first.price %></td>
-      </tr>
-    </tbody>
-  </table>
+          .ordered tr td:first-child::before {
+          content: counter(rowNumber);
+          }
+          </style>
+          <tbody class="ordered">
+            <% @trip.receipts.each do |receipt| %>
+              <% receipt.items.each do |item| %>
+                <tr>
+                  <td class="border-bottom border-top"></td>
+                  <td class="border-bottom border-top"><%= receipt.transaction_no %></td>
+                  <td class="border-bottom border-top"><%= receipt.date %></td>
+                  <td class="border-bottom border-top"><%= item.quantity %></td>
+                  <td class="border-bottom border-top"><%= item.description %></td>
+                  <td class="border-bottom border-top"><%= item.price %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-  <h2>Part C: Retailer's declaration</h2>
-  <p>I declare that:</p>
-  <ul>
-    <li>The details on this form are correct</li>
-    <li>I am satisfied that the customer is entitiled to use the VAT Retail Export Scheme</li>
-    <li>The goods were sold on the dates stated on Part B</li>
-    <li>The customer has completed and signed Part A</li>
-  </ul>
-  <p>Signature and date</p>
-
-  <h2>Part D: For official use</h2>
-  <p>For official use at the point of export from the EU</p>
-  <p>Signature and stamp</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Part A: Customer's declaration</h2>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th scope="row">Title</th>
+                <td class="border-bottom border-top"> <%= @user.title %></td>
+            </tr>
+            <tr>
+              <th scope="row">First</th>
+                <td class="border-bottom border-top"> <%= @user.first_name %></td>
+            </tr>
+            <tr>
+              <th scope="row">Last Name</th>
+                <td class="border-bottom border-top"> <%= @user.last_name %></td>
+            </tr>
+            <tr>
+              <th scope="row">Permanent Address</th>
+                <td class="border-bottom border-top"> <%= @user.address %></td>
+            </tr>
+            <tr>
+              <th scope="row">Passport Number</th>
+                <td class="border-bottom border-top"> <%= @user.passport_no %></td>
+            </tr>
+            <tr>
+              <th scope="row">Issued by Government of</th>
+                <td class="border-bottom border-top"> <%= @user.passport_no %></td>
+            </tr>
+            <tr>
+              <th scope="row">Passport Number</th>
+                <td class="border-bottom border-top"> <%= @user.passport_country_name %></td>
+            </tr>
+            <tr>
+              <th scope="row">EU Arrival on</th>
+                <td class="border-bottom border-top"> <%= @trip.arrival_date %></td>
+            </tr>
+            <tr>
+              <th scope="row">EU Departure on</th>
+                <td class="border-bottom border-top"> <%= @trip.departure_date %></td>
+            </tr>
+            <tr>
+              <th scope="row">Final Destination</th>
+                <td> <%= @trip.final_destination_name %></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-hover">
+          <thead>
+            <tr class="w-50">
+              <th scope="col">Signature</th>
+            </tr>
+            <tr class="w-50">
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="container">
+          <h2>Part C: Retailer's declaration</h2>
+          <div class="container mt-2 py-3">
+            <p>I declare that: </p>
+            <ul style="list-style: circle">
+              <li>The details on this form are correct</li>
+              <li>I am satisfied that the customer is entitiled to use the VAT Retail Export Scheme</li>
+              <li>The goods were sold on the dates stated on Part B</li>
+              <li>The customer has completed and signed Part A</li>
+            </ul>   
+            <table class="table table-hover">
+              <thead>
+                <tr class="col-3 w-50">
+                  <th scope="col">Signature</th>
+                </tr>
+                <tr class="col-3 w-50">
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div class="container">
+          <h2>Part D: For official use</h2>
+          <div class="container mt-2 py-3">
+            <p>For official use at the point of export from the EU</p>
+            <table class="table table-hover">
+              <thead>
+                <tr class="w-50">
+                  <th scope="col">Signature</th>
+                </tr>
+                <tr class="col-3 w-50">
+                  <th scope="col">Stamp</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
