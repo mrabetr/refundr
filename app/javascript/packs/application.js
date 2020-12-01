@@ -41,4 +41,16 @@ document.addEventListener('turbolinks:load', () => {
   activePage();
   addItems();
   fetchCurrentPositionWeather();
+  if(document.querySelector(".pie_chart")) {
+    console.log("hello")
+    const table = document.querySelector(".table");
+    const pieChart = document.querySelector(".pie_chart")
+    document.addEventListener('scroll', (event) => {
+      console.log(window.scrollY);
+      pieChart.style.top = `${window.scrollY}px`;
+      table.style.top = `-${window.scrollY}px`;
+    })
+  }
 });
+
+
