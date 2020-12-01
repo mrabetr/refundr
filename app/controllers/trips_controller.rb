@@ -56,6 +56,7 @@ class TripsController < ApplicationController
   end
 
   def edit
+    eu_countries
   end
 
   def update
