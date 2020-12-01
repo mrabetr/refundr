@@ -2,33 +2,29 @@
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-6">
       <h2 class="text-center my-3">Receipt</h2>
-      <div class="card border-0 mb-3" style="width: 100%;">
+      <div class="card shadow border-0 mb-3" style="width: 100%;">
         <%= cl_image_tag "https://images.unsplash.com/photo-1561715276-a2d087060f1d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80", class: "card-img-top" %>
         <div class="card-body">
           <p><i class="fas fa-store"></i> <%= @receipt.shop %> - <%= @receipt.shop_address %></p>
           <h5 class="card-title"><%= humanized_money_with_symbol(@saving) %> saving</h5>
           <hr>
           <ul class="list-inline d-flex justify-content-between">
-            <li class="list-inline-item"><i class="fas fa-shopping-bag"></i> <%= @items %> items</li>
-            <li class="list-inline-item"><i class="fas fa-receipt"></i> <%= humanized_money_with_symbol(@receipt.total) %> total</li>
+            <li type="button" class="list-inline-item" data-toggle="modal" data-target="#items">
+              <i class="fas fa-shopping-bag"></i> <%= @items %> items
+            </li>
+            <li type="button" class="list-inline-item" data-toggle="modal" data-target="#photo-receipt">
+              <i class="fas fa-receipt"></i> <%= humanized_money_with_symbol(@receipt.total) %> total
+            </li>
             <li class="list-inline-item"><i class="far fa-calendar-alt"></i> <%= @receipt.date.strftime("%b %d") %></li>
           </ul>
           <hr>
           <div class="d-flex justify-content-between">
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#photo-receipt">
-                View
-              </button>
-              <%= link_to "Edit", edit_photo_receipt_path(@receipt), class: "btn btn-sm btn-outline-secondary" %>
-              <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#items">
-                Items
-              </button>
-            </div>
+            <%= link_to "Edit", edit_photo_receipt_path(@receipt), class: "btn btn-sm btn-outline-secondary" %>
             <%= link_to "Delete", receipt_path(@receipt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-secondary" %>
           </div>
         </div>
       </div>
-      <%= link_to "Back to receipts", trip_path(@trip), class: "btn btn-warning button w-100" %>
+      <%= link_to "Back to Trip", trip_path(@trip), class: "btn btn-warning button w-100" %>
 
       <!-- Original Receipt - Modal -->
       <div class="modal fade" id="photo-receipt" tabindex="-1" role="dialog" aria-labelledby="photo-receipt-title" aria-hidden="true">

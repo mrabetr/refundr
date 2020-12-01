@@ -7,8 +7,8 @@
         <img class="logo" src="<%= asset_path 'Logo2.png' %>" width="210" height="65" alt="">
       </div>
     </div>
-    <div class="flex-row-reverse ml-auto align-items-end mw-30">  
-      <i id="spinner" class="fa fa-spinner rotating mr-4 mt-3"></i> 
+    <div class="flex-row-reverse ml-auto align-items-end mw-30">
+      <i id="spinner" class="fa fa-spinner rotating mr-4 mt-3"></i>
       <div id="weather" class="hidden">
         <h5 class="ml-auto pt-2 mb-0"><span id="city"></span>, <span id="country"></span></h5>
         <h6 class="ml-auto d-flex justify-content-end"><span id="temperature" style="color: gray; padding-top: 1em"></span><img id="icon" style="height: 2em, width: 2em" src=""></h6>
@@ -31,7 +31,8 @@
         </ul>
         <ul class="logout">
           <div class="d-flex py-2">
-            <i class="fas fa-power-off"></i><%= link_to "Log out", destroy_user_session_path, method: :delete, style: "font-weight: bold;" %>
+            <p><i class="fas fa-power-off"></i></p>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, style: "font-weight: bold; padding-left: 5px;" %>
           </div>
           <p>Version 1.0</p>
         </ul>
