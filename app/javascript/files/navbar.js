@@ -10,12 +10,12 @@
 //     };
 //   })
 // }
-
 const hamburgerHider = () => {
   const menu = document.querySelector('#menu');
   const hamburger = document.querySelector('#hamburger');
   const everything = document.querySelector('#everything');
 
+ if (hamburger) {
   hamburger.addEventListener('click', (event) => {
     menu.style.width = "200px";
     menu.style.borderRight = "1px solid rgba(0, 0, 0, 0.2)";
@@ -25,7 +25,8 @@ const hamburgerHider = () => {
       menu.style.width = "0px";
       menu.style.borderRight = "1px solid rgba(0, 0, 0, 0)";
     };
-  })  
+  })
+  }
 }
 
 
@@ -33,11 +34,13 @@ const hamburgerHider = () => {
 const activePage = () => {
   const currentLocation = location.href
   const navbar = document.getElementById("nav-menu")
+  if (navbar) {
   const menuItem = navbar.querySelectorAll("a");
   for (let i = 0; i < menuItem.length; i++) {
     if (menuItem[i].href === currentLocation){
       menuItem[i].className = "active1"
     }
+  }
   }
 }
 
