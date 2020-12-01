@@ -34,7 +34,7 @@ const activePage = () => {
   const menuItem = navbar.querySelectorAll("a");
   for (let i = 0; i < menuItem.length; i++) {
     if (menuItem[i].href === currentLocation){
-      menuItem[i].className = "active"
+      menuItem[i].className = "active1"
     }
   }
 }
