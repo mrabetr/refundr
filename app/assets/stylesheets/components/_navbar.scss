@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color:white;
+  background-color: $alice-blue;
   height: 70px;
   overflow: hidden;
   position: fixed;
@@ -50,7 +50,7 @@
   -moz-transition:width 200ms ease-in;
   -o-transition:width 200ms ease-in;
   transition:width 200ms ease-in;
-  z-index: 2;
+  z-index: 15;
 }
 
 .user-info {

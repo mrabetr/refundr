@@ -2,14 +2,24 @@
   margin-bottom: 10px;
 }
 
-#excvat {
+#total {
   position: absolute;
-  top: 50%;
-  left: 59%;
+  top: 37%;
+  left: 43%;
 }
 
 #vatsave {
+  color: $our-pink;
+  font-weight: light;
+  font-size: 40px;
   position: absolute;
-  top: 30%;
-  left: 28%;
+  top: 27%;
+  left: 33%;
+  text-align: center;
+}
+
+#refund {
+  position: absolute;
+  top: 34%;
+  left: 37%;
 }
