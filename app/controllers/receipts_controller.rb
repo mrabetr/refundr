@@ -7,9 +7,12 @@ class ReceiptsController < ApplicationController
     @item = Item.new
 
     @total = 0
+    @items = 0
     @receipt.items.each do |item|
       @total += item.price
+      @items += 1
     end
+    @saving = @total / 6.0
   end
 
   def new_photo
