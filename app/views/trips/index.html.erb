@@ -1,33 +1,49 @@
 <div class="d-flex flex-column align-items-center">
   <h3>Your Trips</h3>
-    <% @trips.each do |trip| %>
-      <div class="list-group rounded m-0 py-3" style="width: 300px;">
+  <% @trips.each do |trip| %>
+    <div class="trips-card shadow">
+      <% if trip.current == true %>
+        <h6 class="active"><%= trip.country_name%>: current</h6>
+      <% else %>
+        <h6><%= trip.country_name%>: previous</h6>
+      <% end %>
+        <p class="travel-dates"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></p>
+      <% if trip.receipts.empty? %>
+        <p>There are no current receipts</p>
         <% if trip.current == true %>
-          <div class="list-group-item list-group-item-action active"><%= trip.country_name%>: current</div>
-        <% else %>
-          <div class="list-group-item list-group-item-action"><%= trip.country_name %></div>
-        <% end %>
-          <div class="list-group-item list-group-item-action"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></div>
-        <% if trip.receipts.empty? %>
-          <div class="list-group-item list-group-item-action">There are no current receipts</div>
-          <% if trip.current == true %>
-            <div class="list-group-item list-group-item-action"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></div>
-          <% else %>
-            <div class="list-group-item list-group-item-action d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></div>
-          <% end %>
-        <% else %>
-          <div class="d-flex">
-            <div class="list-group-item list-group-item-action"><% trip.receipts.each do |receipt| %> <%= "#{receipt.shop} | "%><% end %></div>
+          <div class="d-flex justify-content-between">
+            <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
           </div>
-            <div class="list-group-item list-group-item-action"><%= "Total spent: #{humanized_money_with_symbol(trip.total)}" %></div>
-          <% if trip.current == true %>
-            <div class="list-group-item list-group-item-action d-flex justify-content-between"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %><div><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></div></div> 
-          <% else %>
-            <div class="list-group-item list-group-item-action d-flex justify-content-end"><%= link_to "View receipts", trip %><i class="fas fa-arrow-right"></i></div>
-          <% end %>
+        <% else %>
+          <div class="d-flex justify-content-center">
+            <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p>
+          </div>
         <% end %>
-      </div>
-    <% end %>
-  </ul>
+      <% else %>
+        <div class="spent-border">
+          <p class="spent"><%= "Total spent: #{humanized_money_with_symbol(trip.total)}" %></p>
+        </div>
+        <p>Last receipt:</p>
+        <ul class="list-inline d-flex justify-content-between">
+            <li type="button" class="list-inline-item" data-toggle="modal" data-target="#items">
+              <i class="fas fa-store"></i><%= trip.receipts.last.shop %>
+            </li>
+            <li type="button" class="list-inline-item" data-toggle="modal" data-target="#photo-receipt">
+              <i class="fas fa-receipt"></i> <%= humanized_money_with_symbol(trip.receipts.last.total) %> total
+            </li>
+            <li class="list-inline-item"><i class="far fa-calendar-alt"></i> <%= trip.receipts.last.date.strftime("%b %d") %></li>
+          </ul>
+        <% if trip.current == true %>
+          <div class="d-flex justify-content-between">
+            <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
+            <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p> 
+          </div>
+        <% else %>
+          <div class="d-flex justify-content-center">
+            <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-
