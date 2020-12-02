@@ -2,42 +2,74 @@
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-6">
       <h2 class="text-center mb-3">Review Details</h2>
-      <% if @receipt.photo.attached? %>
-        <%= cl_image_tag @receipt.photo.key, crop: :fill, class: "photo-receipt" %>
-      <% end %>
-      <%= simple_form_for(@receipt, url: update_photo_receipt_path(@receipt)) do |f| %>
-        <div class="form-row">
-          <div class="col-6 form-group mb-0">
-            <%= f.input :shop, label: "Store" %>
-          </div>
-          <div class="col-6 form-group mb-0">
-            <%= f.input :shop_vat_no, label: "VAT nunmber" %>
-          </div>
+      <%# if @receipt.photo.attached? %>
+        <%#= cl_image_tag @receipt.photo.key, crop: :fill, class: "photo-receipt" %>
+      <%# end %>
+      <div class="card my-3 py-3 px-3 w-100 border-0 shadow">
+        <div class="row">
+            <div class="col-lg-12">
+                <button type="button" class="btn btn-sm btn-outline-secondary float-right mb-3" data-toggle="modal" data-target="#photo-receipt">
+                  Photo
+                </button>
+            </div>
         </div>
-        <%= f.input :shop_address, label: "Address" %>
-        <div class="form-row">
-          <div class="col-6 form-group mb-0">
-            <%= f.input :transaction_no, label: "Transaction number" %>
-          </div>
-          <div class="col-6 form-group mb-0">
-            <%= f.input :date, as: :date, html5: true, label: "Date of purchase" %>
-          </div>
-        </div>
-        <hr>
-        <%= f.simple_fields_for :items do |b| %>
-          <%= b.input :description, label: "Item" %>
+        <%= simple_form_for(@receipt, url: update_photo_receipt_path(@receipt)) do |f| %>
           <div class="form-row">
             <div class="col-6 form-group mb-0">
-              <%= b.input :quantity, label: "Quantity" %>
+              <%= f.input :shop, label: "Store" %>
             </div>
             <div class="col-6 form-group mb-0">
-              <%= b.input :price, label: "Price" %>
+              <%= f.input :shop_vat_no, label: "VAT nunmber" %>
             </div>
           </div>
-        <% end %>
+          <%= f.input :shop_address, label: "Address" %>
+          <div class="form-row">
+            <div class="col-6 form-group mb-0">
+              <%= f.input :transaction_no, label: "Transaction number" %>
+            </div>
+            <div class="col-6 form-group mb-0">
+              <%= f.input :date, as: :date, html5: true, label: "Date of purchase" %>
+            </div>
+          </div>
+          <hr>
+          <%= f.simple_fields_for :items do |b| %>
+            <%= b.input :description, label: "Item" %>
+            <div class="form-row">
+              <div class="col-6 form-group mb-0">
+                <%= b.input :quantity, label: "Quantity" %>
+              </div>
+              <div class="col-6 form-group mb-0">
+                <%= b.input :price, label: "Price" %>
+              </div>
+            </div>
+          <% end %>
+
+      </div>
         <%= f.submit value: "Validate Receipt", class: "btn btn-warning button mb-3 w-100" %>
       <% end %>
-      <%= link_to "Back to Receipt", receipt_path(@receipt) %>
+      <%#= link_to "Back to Receipt", receipt_path(@receipt) %>
+
+      <!-- Original Receipt - Modal -->
+      <div class="modal fade" id="photo-receipt" tabindex="-1" role="dialog" aria-labelledby="photo-receipt-title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="photo-receipt-title">Original Receipt</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <% if @receipt.photo.attached? %>
+                <%= cl_image_tag @receipt.photo.key, crop: :fill, class: "photo-receipt rounded" %>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

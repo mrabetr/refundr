@@ -26,6 +26,7 @@ class ReceiptsController < ApplicationController
     @user = current_user
     @receipt.trip = @trip
     @receipt.user = @user
+    @receipt.date = Date.today
 
     if @receipt.save
       @data = OcrService.new.detect_text(URI.open(@receipt.photo.service_url))
