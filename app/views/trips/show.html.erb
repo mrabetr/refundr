@@ -1,6 +1,5 @@
-<br>
 <div class="trip-show-main">
-  <div class="trip-index-card">
+  <div class="trip-index-card shadow">
     <div class= "d-flex justify-content-between">
       <h6>Trip: <%= @trip.country_name %></h6>
       <% if @trip.current == true %>
@@ -13,65 +12,78 @@
 
     </div>
     <p>VAT: <strong><%= humanized_money_with_symbol(@VatTotal) %></strong></p>
-    <p><i class="fas fa-info-circle"></i>Reclaim your VAT by <%= @trip.departure_date.strftime("%d/%m/%Y") %>!</p>
+    <p><i class="fas fa-info-circle"></i> Reclaim your VAT by <%= @trip.departure_date.strftime("%d/%m/%Y") %>!</p>
   </div>
-
-  <% if @trip.current == true %>
-  <div class="d-flex justify-content-between my-2 p-2">
-    <%= link_to new_trip_receipt_path(@trip) do %>
-      <div class="add-button">
-        <i class="fas fa-keyboard"></i>
-        <p>Manual Receipt</p>
-      </div>
-    <% end %>
-    <%= link_to new_photo_trip_receipts_path(@trip) do %>
-      <div class="add-button">
-        <i class="fas fa-image"></i>
-        <p>Photo Receipt</p>
-      </div>
-    <% end %>
-  </div>
-  <% end %>
-</div>
-
-
-<nav>  
-  <div class="nav nav-pills d-flex justify-content-center" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link" id="nav-savings-tab" data-toggle="tab" href="#nav-savings" role="tab" aria-controls="nav-savings" aria-selected="true">Savings</a>
-    <a class="nav-item nav-link active" id="nav-receipts-tab" data-toggle="tab" href="#nav-receipts" role="tab" aria-controls="nav-receipts" aria-selected="false">Receipts</a>
-  </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade" id="nav-savings" role="tabpanel" aria-labelledby="nav-savings-tab">
-    <div class="receipts-box">
-      <%= column_chart @metadata, stacked: true, library: { animation: { easing: 'easeOutQuad'}} %>
-    </div>
-  </div>
-  <div class="tab-pane fade show active" id="nav-receipts" role="tabpanel" aria-labelledby="nav-receipts-tab">
-    <div class="receipts-box" id="receipts-box">
-      <% @receipts.each do |receipt| %>
-        <%= link_to receipt_path(receipt) do %>
-          <div class="d-flex justify-content-between" id="listed-receipt">
-            <div>
-              <h6><%= receipt.shop %></h6>
-              <p><%= receipt.shop_address %></p>
-            </div>
-            <div class="d-flex flex-column align-items-end">
-              <h6><%= humanized_money_with_symbol(receipt.total) %></h6>
-              <p><%= receipt.date.strftime("%d/%m/%Y") %></p> 
-            </div>
+  <div style="width: 95%; margin: 0 auto;">
+    <% if @trip.current == true %>
+      <div class="d-flex justify-content-between my-3">
+        <%= link_to new_trip_receipt_path(@trip) do %>
+          <div class="add-button shadow">
+            <i class="fas fa-keyboard"></i>
+            <p>Manual Receipt</p>
           </div>
         <% end %>
-      <% end %>
-      <div style="text-align: center;">
-        <% if @trip.current == true %>
-          <%= simple_form_for ([@trip, @form]) do |f| %>
-            <%= f.submit value: "Reclaim VAT", class: "btn btn-warning button" %>
+        <%= link_to new_photo_trip_receipts_path(@trip) do %>
+          <div class="add-button shadow">
+            <i class="fas fa-image"></i>
+            <p>Photo Receipt</p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<% if @trip.receipts.present? %>
+  <div class="my-3" style="text-align: center;">
+    <% if @trip.current == true %>
+      <div class="py-3" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); width: 95%; margin: 0 auto;">
+        <%= simple_form_for ([@trip, @form]) do |f| %>
+          <%= f.submit value: "Reclaim VAT", class: "btn btn-warning button w-100" %>
+        <% end %>
+      </div>
+    <% elsif @trip.current == false %>
+        <div class="py-3" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2); width: 95%; margin: 0 auto;">
+          <%= link_to "Go to form", form_path(@currentform), class: "btn btn-warning button w-100" %>
+        </div>
+    <% end %>
+  </div>
+
+  <nav>  
+    <div class="nav nav-pills d-flex justify-content-center" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link" id="nav-savings-tab" data-toggle="tab" href="#nav-savings" role="tab" aria-controls="nav-savings" aria-selected="true">Savings</a>
+      <a class="nav-item nav-link active" id="nav-receipts-tab" data-toggle="tab" href="#nav-receipts" role="tab" aria-controls="nav-receipts" aria-selected="false">Receipts</a>
+    </div>
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade" id="nav-savings" role="tabpanel" aria-labelledby="nav-savings-tab">
+      <div class="receipts-box">
+        <h6>Your savings:</h6>
+        <%= column_chart @metadata, stacked: true, library: { animation: { easing: 'easeOutQuad'}} %>
+        <p>Potentail VAT saved on this trip is <%= humanized_money_with_symbol(@VatTotal) %></p>
+      </div>
+    </div>
+    <div class="tab-pane fade show active" id="nav-receipts" role="tabpanel" aria-labelledby="nav-receipts-tab">
+      <div class="receipts-box shadow" id="receipts-box">
+      <h6>Receipts:</h5>
+      <br>
+        <% @receipts.each do |receipt| %>
+          <%= link_to receipt_path(receipt) do %>
+            <div class="d-flex justify-content-between" id="listed-receipt">
+              <div>
+                <h6><%= receipt.shop %></h6>
+                <p><%= receipt.shop_address %></p>
+              </div>
+              <div class="d-flex flex-column align-items-end">
+                <h6><%= humanized_money_with_symbol(receipt.total) %></h6>
+                <p><%= receipt.date.strftime("%d/%m/%Y") %></p> 
+              </div>
+            </div>
           <% end %>
-        <% else %>
-          <%= link_to "Go to form", form_path(@currentform), class: "btn btn-warning button" %>
         <% end %>
       </div>
     </div>
   </div>
-</div>
+<% end %>
