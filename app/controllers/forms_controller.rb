@@ -22,4 +22,10 @@ class FormsController < ApplicationController
       render :new
     end
   end
+
+  def display
+    @form = Form.find(params[:form_id])
+    @trip = @form.trip
+    @user = @form.user
+  end
 end
