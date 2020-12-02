@@ -1,36 +1,40 @@
 <div class="container">
-  <h4>VAT Form for your <strong><%= @trip.country_name %></strong> trip</h4>
-  <h5><%= @trip.arrival_date %> until <%= @trip.departure_date %></h5>
-
-    <div class="col-sm-4">
-      <img src='<%= asset_path 'example_form.png' %>' class="border shadow p-3 mb-5 bg-light rounded" style="zoom: 15%" alt="VAT form minature">
+  <div class="trip-index-card py-3">
+    <div class="container">
+      <h4>VAT Form for <strong><%= @trip.country_name %></strong> trip</h4>
+      <h5 class="border-bottom pb-2"><%= @trip.arrival_date %> until <%= @trip.departure_date %></h5>
     </div>
-    <div class="col-sm-8">
-        <button type="button" class="btn btn-primary"><%= link_to "Download form", form_display_path(@form) %></button>
-      </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Preview form
-        </button>
-
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">VAT Form 407</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%= render "mobile_display" %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <img src='<%= asset_path 'example_form.png' %>' class="border shadow p-3 mb-5 bg-light rounded" style="zoom: 13%" alt="VAT form minature">
+        </div>
+        <div class="col-8">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Preview form
+          </button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">VAT Form 407</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body", style="max-width: auto">
+                  <%= render "mobile_display" %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary"><%= link_to "Download", form_display_path(@form) %></button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <button type="button" class="btn btn-primary", style="color: white">Send to email</button>
+          <button type="button" class="btn btn-primary"><%= link_to "Download", form_display_path(@form) %></button>
       </div>
-    <button type="button" class="btn btn-primary", style="color: white">Send to email</button>
+    </div>
+  </div>
 </div>
-
 

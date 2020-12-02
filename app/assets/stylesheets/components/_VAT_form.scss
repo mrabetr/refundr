@@ -11,9 +11,12 @@
 }
 
 .mobile-table {
-	font-size: 12px;
-	z-index: 0;
+	max-width: 100%;
+	padding: 0.8em;
+	word-break: break-all;
+	font-size: 0.8em;
 	border-collapse: collapse;
-	vertical-align: top;
+	vertical-align: center;
 	text-align: center;
+	table-layout: fixed;
 }
