@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  post 'weather', to: 'pages#weather', as: :weather
 
   resources :trips do
     resources :receipts, only: [:new, :create] do
