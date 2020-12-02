@@ -1,4 +1,4 @@
-<% if current_user.trips.last.current == true %>
+<% if current_user.trips.present? == true %>
   <h3 class="header">Current spending</h3>
   <% total_counter = 0 %>
   <% excvat_counter = 0 %>
