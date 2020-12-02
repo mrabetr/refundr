@@ -2,12 +2,12 @@
 <table class="table table-hover mobile-table">
   <thead>
     <tr>
-      <th scope="col">Item</th>
-      <th scope="col">Receipt #</th>
-      <th scope="col">Date</th>
-      <th scope="col">Qt</th>
-      <th scope="col">Description</th>
-      <th scope="col">Price+VAT</th>
+      <th scope="col" style="width: 3em">No</th>
+      <th scope="col" style="width: 5em">Receipt #</th>
+      <th scope="col" style="width: 4.5em">Date</th>
+      <th scope="col" style="width: 3.5em">Qt</th>
+      <th scope="col" style="width: 6em">Description</th>
+      <th scope="col" style="width: 6em">Price+VAT</th>
     </tr>
   </thead>
   <tbody class="ordered justify-content-sm-start">
@@ -26,106 +26,48 @@
   </tbody>
 </table>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <h2>Part A: Customer's declaration</h2>
-        <table class="table table-hover">
-          <tbody>
-            <tr>
-              <th scope="row">Title</th>
-                <td class="border-bottom border-top"> <%= @user.title %></td>
-            </tr>
-            <tr>
-              <th scope="row">First</th>
-                <td class="border-bottom border-top"> <%= @user.first_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">Last Name</th>
-                <td class="border-bottom border-top"> <%= @user.last_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">Permanent Address</th>
-                <td class="border-bottom border-top"> <%= @user.address %></td>
-            </tr>
-            <tr>
-              <th scope="row">Passport Number</th>
-                <td class="border-bottom border-top"> <%= @user.passport_no %></td>
-            </tr>
-            <tr>
-              <th scope="row">Issued by Government of</th>
-                <td class="border-bottom border-top"> <%= @user.passport_no %></td>
-            </tr>
-            <tr>
-              <th scope="row">Passport Number</th>
-                <td class="border-bottom border-top"> <%= @user.passport_country_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">EU Arrival on</th>
-                <td class="border-bottom border-top"> <%= @trip.arrival_date %></td>
-            </tr>
-            <tr>
-              <th scope="row">EU Departure on</th>
-                <td class="border-bottom border-top"> <%= @trip.departure_date %></td>
-            </tr>
-            <tr>
-              <th scope="row">Final Destination</th>
-                <td> <%= @trip.final_destination_name %></td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="table table-hover">
-          <thead>
-            <tr class="w-50">
-              <th scope="col">Signature</th>
-            </tr>
-            <tr class="w-50">
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      
-      <div class="col-sm-6">
-        <div class="container">
-          <h2>Part C: Retailer's declaration</h2>
-          <div class="container mt-2 py-3">
-            <p>I declare that: </p>
-            <ul style="list-style: circle">
-              <li>The details on this form are correct</li>
-              <li>I am satisfied that the customer is entitiled to use the VAT Retail Export Scheme</li>
-              <li>The goods were sold on the dates stated on Part B</li>
-              <li>The customer has completed and signed Part A</li>
-            </ul>   
-            <table class="table table-hover">
-              <thead>
-                <tr class="col-3 w-50">
-                  <th scope="col">Signature</th>
-                </tr>
-                <tr class="col-3 w-50">
-                  <th scope="col">Date</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </div>
-        <div class="container">
-          <h2>Part D: For official use</h2>
-          <div class="container mt-2 py-3">
-            <p>For official use at the point of export from the EU</p>
-            <table class="table table-hover">
-              <thead>
-                <tr class="w-50">
-                  <th scope="col">Signature</th>
-                </tr>
-                <tr class="col-3 w-50">
-                  <th scope="col">Stamp</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<h4>Part A: Customer's declaration</h4>
+<table class="table table-hover mobile-table">
+  <tbody>
+    <tr>
+      <th scope="row">Title</th>
+        <td class="border-bottom border-top"> <%= @user.title %></td>
+    </tr>
+    <tr>
+      <th scope="row">First</th>
+        <td class="border-bottom border-top"> <%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Last Name</th>
+        <td class="border-bottom border-top"> <%= @user.last_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Permanent Address</th>
+        <td class="border-bottom border-top"> <%= @user.address %></td>
+    </tr>
+    <tr>
+      <th scope="row">Passport Number</th>
+        <td class="border-bottom border-top"> <%= @user.passport_no %></td>
+    </tr>
+    <tr>
+      <th scope="row">Issued by Government of</th>
+        <td class="border-bottom border-top"> <%= @user.passport_no %></td>
+    </tr>
+    <tr>
+      <th scope="row">Passport Number</th>
+        <td class="border-bottom border-top"> <%= @user.passport_country_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">EU Arrival on</th>
+        <td class="border-bottom border-top"> <%= @trip.arrival_date %></td>
+    </tr>
+    <tr>
+      <th scope="row">EU Departure on</th>
+        <td class="border-bottom border-top"> <%= @trip.departure_date %></td>
+    </tr>
+    <tr>
+      <th scope="row">Final Destination</th>
+        <td> <%= @trip.final_destination_name %></td>
+    </tr>
+  </tbody>
+</table>
