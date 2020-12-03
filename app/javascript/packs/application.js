@@ -46,25 +46,29 @@ document.addEventListener('turbolinks:load', () => {
   if(document.querySelector('#banner-typed-text')) {
     loadDynamicBannerText();
   }
+  function scroller(event) {
+    const table = document.querySelector("#dynamic-table");
+    if (table) {
+      const tableHeight = parseFloat(getComputedStyle(table, null).height.replace("px", ""));
+      const pieChart = document.querySelector("#header");
+      let scrollTarget = 0;
+        if(window.scrollY > (tableHeight - 180)) {
+          window.scrollTo(0, scrollTarget);
+        }
+        else {
+          scrollTarget = window.scrollY;
+        } 
+      } 
+    }
   if(document.querySelector(".pie_chart")) {
-    const table = document.querySelector(".table");
-    const tableHeight = parseFloat(getComputedStyle(table, null).height.replace("px", ""));
-    console.log(tableHeight);
-    const pieChart = document.querySelector(".header");
-    let scrollTarget = 0;
-    document.addEventListener('scroll', (event) => {
-      // pieChart.style.top = `40px`;
-      // table.style.top = `-${window.scrollY}px`;
-      if(window.scrollY > (tableHeight - 180)) {
-        console.log("working");
-        window.scrollTo(0, scrollTarget);
-      }
-      else {
-        scrollTarget = window.scrollY;
-        console.log(scrollTarget);
-      }
-    })
+    document.addEventListener('scroll', scroller);
   }
+  // pieChart.style.top = `40px`;
+  // table.style.top = `-${window.scrollY}px`;
+  if(document.querySelector(".pie_chart") == null) {
+    document.removeEventListener('scroll', scroller);
+  }
+
   if (document.querySelector(".select2")) {
     initSelect2();
   }

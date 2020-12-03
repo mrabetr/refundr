@@ -46,7 +46,7 @@
   font-weight: lighter;
 }
 
-.table {
+#dynamic-table {
   background-color: #FFF;
   border-radius: 4px;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
@@ -54,13 +54,12 @@
   transition: 100ms;
   position: relative;
   margin-top: 500px;
+  td {
+  border-top: none;
+  }
 }
 
 .showcase-inner {
   padding-right: 5px;
   padding-left: 5px;
-}
-
-.table td {
-  border-top: none;
 }

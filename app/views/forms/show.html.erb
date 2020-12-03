@@ -28,9 +28,9 @@
           </ul>
           <hr>
           <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-sm btn-outline-secondary w-10" data-toggle="modal" data-target="#exampleModal">Preview form
+            <button type="button" class="btn btn-sm btn-outline-secondary w-10" data-toggle="modal" data-target="#exampleModal">Preview
             </button>
-            <button type="button" class="btn btn-sm btn-outline-secondary w-10">Send to email</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary w-10">Email</button>
           </div>
         </div>
       </div>
@@ -50,9 +50,7 @@
             <div class="modal-body", style="max-width: auto">
               <%= render "mobile_display" %>
             </div>
-            <div class="modal-footer">
-              <%= link_to "Download", form_display_path(@form), class: "btn btn-warning button w-100" %>
-            </div>
+          </div>
         </div>
       </div>
       <!-- Modal ends -->
