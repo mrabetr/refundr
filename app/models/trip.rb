@@ -1,7 +1,7 @@
 class Trip < ApplicationRecord
   belongs_to :user
   has_many :receipts, dependent: :destroy
-  has_many :forms, dependent: :destroy
+  has_one :form, dependent: :destroy
 
   validates :arrival_date, :departure_date, :final_destination, :country, presence: true
   # validate :departure_date_after_arrival_date
@@ -24,7 +24,7 @@ class Trip < ApplicationRecord
   end
 
   private
-  
+
   def end_date_after_start_date
     return xxx if self.departure_date.blank? || self.arrival_date.blank?
     if self.departure_date < self.arrival_date

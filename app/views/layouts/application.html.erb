@@ -24,11 +24,15 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <header class="showcase" id="everything">
-      <div class="container showcase-inner">
-        <%= yield %>
-      </div>
-    </header>
+    <% if user_signed_in? %>
+      <header class="showcase" id="everything">
+        <div class="container showcase-inner">
+          <%= yield %>
+        </div>
+      </header>
+    <% else %>
+      <%= yield %>
+    <% end %>
 
   </body>
 </html>
