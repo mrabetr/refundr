@@ -1,25 +1,44 @@
 .pie_chart {
-  margin-bottom: 10px;
+  z-index: 5;
+  margin-bottom: 20px;
+  position: relative;
 }
 
-#total {
-  position: absolute;
-  top: 37%;
-  left: 43%;
+.test-stuff {
+  position: relative;
 }
+
+.test {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  left: 0;
+}
+
+.pie-container {
+  position: relative;
+  height: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.chart-text {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
 
 #vatsave {
   color: $our-pink;
   font-weight: light;
   font-size: 40px;
-  position: absolute;
-  top: 27%;
-  left: 33%;
-  text-align: center;
 }
 
-#refund {
-  position: absolute;
-  top: 34%;
-  left: 37%;
-}
+

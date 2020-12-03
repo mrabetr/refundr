@@ -28,6 +28,7 @@ gem "chartkick"
 gem "google-cloud-vision"
 gem 'parallax-rails'
 gem 'highcharts-rails'
+gem 'parallax'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
