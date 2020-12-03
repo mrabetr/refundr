@@ -1,5 +1,5 @@
 
-<% if current_user.trips.last.current == true %>
+<% if current_user.trips.present? == true %>
 
   <% total_counter = 0 %>
   <% excvat_counter = 0 %>
