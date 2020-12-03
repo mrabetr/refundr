@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <%= link_to "Back to Trip", trip_path(@trip), class: "btn btn-warning button w-100" %>
+      <%= link_to "Back to Trip", trip_path(@trip), class: "btn btn-warning button add-photo" %>
 
       <!-- Original Receipt - Modal -->
       <div class="modal fade" id="photo-receipt" tabindex="-1" role="dialog" aria-labelledby="photo-receipt-title" aria-hidden="true">
@@ -64,17 +64,21 @@
               </button>
             </div>
             <div class="modal-body">
-              <ul>
+              <div class="items-modal">
                 <% @receipt.items.each do |item| %>
-                  <li><%= link_to '', edit_item_path(item), class: "fas fa-edit" %>
-                    <%= item.quantity %> x <%= item.description %> - <%= humanized_money_with_symbol(item.price) %> -
-                    <%= link_to '', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "far fa-trash-alt" %>
-                  </li>
+                  <div class="d-flex justify-content-between">  
+                    <p><%= link_to '', edit_item_path(item), class: "fas fa-edit" %><%= item.quantity %> x </p>
+                    <p style="text-align: start;"><%= item.description.first(15) %>...</p>
+                    <p>
+                      <%= humanized_money_with_symbol(item.price) %>
+                      <%= link_to '', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "far fa-trash-alt" %>
+                    </p>
+                  </div>
                 <% end %>
-              </ul>
+              </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>

@@ -1,22 +1,23 @@
 <%= simple_form_for([trip, receipt]) do |f| %>
-  <%= f.input :photo, as: :file %>
-  <%= f.input :shop %>
-  <%= f.input :shop_vat_no %>
-  <%= f.input :shop_address %>
-  <%= f.input :transaction_no %>
-  <%= f.input :date %>
-  <%= f.simple_fields_for :items do |b| %>
-    <div id="fieldsetContainer">
-      <fieldset id="0">
-        <div class="d-flex">
-          <div><%= b.input :quantity, label: "Qt" %></div>
-          <div class="flex-grow-1"><%= b.input :description, label: "Item" %></div>
-          <div><%= b.input :price, label: "Price" %></div>
-        </div>
-        <%= content_tag('a', 'Remove Item', id: "del-"+b.index.to_s, class:"badge badge-danger align-self-center")   %>
-      </fieldset>
-      <% end %>
-    </div>
-  <p class="badge badge-success align-self-center" style="cursor: pointer;" id="addItem">Add more Items</p>
-  <%= f.submit class: "btn btn-warning button w-100" %>
+    <%= f.input :photo, as: :file %>
+    <%= f.input :shop %>
+    <%= f.input :shop_vat_no %>
+    <%= f.input :shop_address %>
+    <%= f.input :transaction_no %>
+    <%= f.input :date %>
+    <%= f.simple_fields_for :items do |b| %>
+      <div id="fieldsetContainer">
+        <fieldset id="0">
+          <div class="d-flex">
+            <div><%= b.input :quantity, label: "Qt" %></div>
+            <div class="flex-grow-1"><%= b.input :description, label: "Item" %></div>
+            <div><%= b.input :price, label: "Price" %></div>
+          </div>
+          <%= content_tag('a', 'Remove Item', id: "del-"+b.index.to_s, class:"badge badge-danger align-self-center")   %>
+        </fieldset>
+        <% end %>
+      </div>
+    <p class="badge badge-success align-self-center" style="cursor: pointer;" id="addItem">Add more Items</p>
+  <%= f.submit class: "btn btn-warning button add-photo w-100" %>
 <% end %>
+

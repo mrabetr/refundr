@@ -11,20 +11,8 @@
       <% end %>
     </div>
     <p>VAT: <strong><%= humanized_money_with_symbol(@VatTotal) %></strong></p>
-    <p><i class="fas fa-info-circle"></i>Reclaim your VAT by <%= @trip.departure_date.strftime("%d/%m/%Y") %>!</p>
+    <p><i class="fas fa-info-circle"></i>Reclaim your VAT by <%= @trip.departure_date.strftime("%d %b %Y") %>!</p>
   </div>
-
-  <% if !@trip.receipts.empty? %>
-    <div class="form-div" style="width: 95%; margin: 10px auto;">
-      <% if @trip.current == true %>
-        <%= simple_form_for ([@trip, @form]) do |f| %>
-          <%= f.submit value: "Reclaim VAT", class: "btn btn-warning button w-100" %>
-        <% end %>
-      <% else %>
-        <%= link_to "Go to form", form_path(@currentform), class: "btn btn-warning button w-100" %>
-      <% end %>
-    </div>
-  <% end %>
 
   <div style="width: 95%; margin: 10px auto;">
   <% if @trip.current == true %>
@@ -68,12 +56,12 @@
           <%= link_to receipt_path(receipt) do %>
             <div class="d-flex justify-content-between" id="listed-receipt">
               <div>
-                <h6><%= receipt.shop %></h6>
+                <h4 class="shop"><%= receipt.shop %></h4>
                 <p><%= receipt.shop_address %></p>
               </div>
               <div class="d-flex flex-column align-items-end">
-                <h6><%= humanized_money_with_symbol(receipt.total) %></h6>
-                <p><%= receipt.date.strftime("%d/%m/%Y") %></p> 
+                <h4><%= humanized_money_with_symbol(receipt.total) %></h4>
+                <p><%= receipt.date.strftime("%d %b %Y") %></p> 
               </div>
             </div>
           <% end %>
@@ -81,4 +69,17 @@
       </div>
     </div>
   </div>
+
+  <% if !@trip.receipts.empty? %>
+    <div class="form-div">
+      <% if @trip.current == true %>
+        <%= simple_form_for ([@trip, @form]) do |f| %>
+          <%= f.submit value: "Reclaim VAT", class: "btn btn-warning button" %>
+        <% end %>
+      <% else %>
+        <%= link_to "Go to form", form_path(@currentform), class: "btn btn-warning button" %>
+      <% end %>
+    </div>
+  <% end %>
+
 <% end %>
