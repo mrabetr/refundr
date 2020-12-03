@@ -1,3 +1,4 @@
+
 <% if current_user.trips.last.current == true %>
 
   <% total_counter = 0 %>
@@ -59,13 +60,13 @@
     </div>
 
 
-<!--   </div> -->
-<!-- </div> -->
+
 <% else %>
   <h2 style="text-align: center;">Reclaim VAT</h2>
-  <div class="map-elements">
-    <img src='<%= asset_path 'London.png' %>' alt="" class= "map">
-    <%= link_to 'Add trip', new_trip_path, class: "btn btn-warning button add-trip" %>
+    <div class="map-elements">
+      <img src='<%= asset_path 'London.png' %>' alt="" class= "map">
+      <%= link_to 'Add trip', new_trip_path, class: "btn btn-warning button add-trip" %>
   </div>
+
 <% end %>
 

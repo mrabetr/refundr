@@ -1,0 +1,22 @@
+.ordered {
+  counter-reset: rowNumber;
+}
+
+.ordered tr {
+  counter-increment: rowNumber;
+}
+
+.ordered tr td:first-child::before {
+  content: counter(rowNumber);
+}
+
+.mobile-table {
+	max-width: 100%;
+	padding: 0.8em;
+	word-break: break-all;
+	font-size: 0.8em;
+	border-collapse: collapse;
+	vertical-align: center;
+	text-align: center;
+	table-layout: fixed;
+}

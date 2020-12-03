@@ -1,0 +1,26 @@
+.trips-card {
+  width: auto;
+  background-color: #f5f5f5;
+  margin: 20px;
+  width: 95%;
+  padding: 10px 20px;
+  h6 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .travel-dates {
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+  .spent {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .spent-border {
+    padding: 2px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+  }
+}

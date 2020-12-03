@@ -1,0 +1,73 @@
+<h4>Part B: Goods description</h4>
+<table class="table table-hover mobile-table">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 3em">No</th>
+      <th scope="col" style="width: 5em">Receipt #</th>
+      <th scope="col" style="width: 4.5em">Date</th>
+      <th scope="col" style="width: 3.5em">Qt</th>
+      <th scope="col" style="width: 6em">Description</th>
+      <th scope="col" style="width: 6em">Price+VAT</th>
+    </tr>
+  </thead>
+  <tbody class="ordered justify-content-sm-start">
+    <% @trip.receipts.each do |receipt| %>
+      <% receipt.items.each do |item| %>
+        <tr>
+          <td class="border-bottom border-top"></td>
+          <td class="border-bottom border-top"><%= receipt.transaction_no %></td>
+          <td class="border-bottom border-top"><%= receipt.date %></td>
+          <td class="border-bottom border-top"><%= item.quantity %></td>
+          <td class="border-bottom border-top"><%= item.description %></td>
+          <td class="border-bottom border-top"><%= item.price %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Part A: Customer's declaration</h4>
+<table class="table table-hover mobile-table">
+  <tbody>
+    <tr>
+      <th scope="row">Title</th>
+        <td class="border-bottom border-top"> <%= @user.title %></td>
+    </tr>
+    <tr>
+      <th scope="row">First</th>
+        <td class="border-bottom border-top"> <%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Last Name</th>
+        <td class="border-bottom border-top"> <%= @user.last_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Permanent Address</th>
+        <td class="border-bottom border-top"> <%= @user.address %></td>
+    </tr>
+    <tr>
+      <th scope="row">Passport Number</th>
+        <td class="border-bottom border-top"> <%= @user.passport_no %></td>
+    </tr>
+    <tr>
+      <th scope="row">Issued by Government of</th>
+        <td class="border-bottom border-top"> <%= @user.passport_no %></td>
+    </tr>
+    <tr>
+      <th scope="row">Passport Number</th>
+        <td class="border-bottom border-top"> <%= @user.passport_country_name %></td>
+    </tr>
+    <tr>
+      <th scope="row">EU Arrival on</th>
+        <td class="border-bottom border-top"> <%= @trip.arrival_date %></td>
+    </tr>
+    <tr>
+      <th scope="row">EU Departure on</th>
+        <td class="border-bottom border-top"> <%= @trip.departure_date %></td>
+    </tr>
+    <tr>
+      <th scope="row">Final Destination</th>
+        <td> <%= @trip.final_destination_name %></td>
+    </tr>
+  </tbody>
+</table>

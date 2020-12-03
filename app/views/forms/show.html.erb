@@ -1,152 +1,40 @@
 <div class="container">
-  <h1>VAT Form 407</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <h2>Part B: Goods description</h2>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col" style="width: 10%;">Item</th>
-              <th scope="col" style="width: 10%;">Receipt Number</th>
-              <th scope="col" style="width: 10%;">Date</th>
-              <th scope="col" style="width: 10%;">Quantity</th>
-              <th scope="col" style="width: 40%;">Description</th>
-              <th scope="col" style="width: 20%;">Price incl VAT</th>
-            </tr>
-          </thead>
-          <style>
-          .ordered {
-          counter-reset: rowNumber;
-          }
-
-          .ordered tr {
-          counter-increment: rowNumber;
-          }
-
-          .ordered tr td:first-child::before {
-          content: counter(rowNumber);
-          }
-          </style>
-          <tbody class="ordered">
-            <% @trip.receipts.each do |receipt| %>
-              <% receipt.items.each do |item| %>
-                <tr>
-                  <td class="border-bottom border-top"></td>
-                  <td class="border-bottom border-top"><%= receipt.transaction_no %></td>
-                  <td class="border-bottom border-top"><%= receipt.date %></td>
-                  <td class="border-bottom border-top"><%= item.quantity %></td>
-                  <td class="border-bottom border-top"><%= item.description %></td>
-                  <td class="border-bottom border-top"><%= item.price %></td>
-                </tr>
-              <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+  <div class="trip-index-card py-3">
+    <div class="container">
+      <h4>VAT Form for <strong><%= @trip.country_name %></strong> trip</h4>
+      <h5 class="border-bottom pb-2"><%= @trip.arrival_date %> until <%= @trip.departure_date %></h5>
     </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <h2>Part A: Customer's declaration</h2>
-        <table class="table table-hover">
-          <tbody>
-            <tr>
-              <th scope="row">Title</th>
-                <td class="border-bottom border-top"> <%= @user.title %></td>
-            </tr>
-            <tr>
-              <th scope="row">First</th>
-                <td class="border-bottom border-top"> <%= @user.first_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">Last Name</th>
-                <td class="border-bottom border-top"> <%= @user.last_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">Permanent Address</th>
-                <td class="border-bottom border-top"> <%= @user.address %></td>
-            </tr>
-            <tr>
-              <th scope="row">Passport Number</th>
-                <td class="border-bottom border-top"> <%= @user.passport_no %></td>
-            </tr>
-            <tr>
-              <th scope="row">Issued by Government of</th>
-                <td class="border-bottom border-top"> <%= @user.passport_no %></td>
-            </tr>
-            <tr>
-              <th scope="row">Passport Number</th>
-                <td class="border-bottom border-top"> <%= @user.passport_country_name %></td>
-            </tr>
-            <tr>
-              <th scope="row">EU Arrival on</th>
-                <td class="border-bottom border-top"> <%= @trip.arrival_date %></td>
-            </tr>
-            <tr>
-              <th scope="row">EU Departure on</th>
-                <td class="border-bottom border-top"> <%= @trip.departure_date %></td>
-            </tr>
-            <tr>
-              <th scope="row">Final Destination</th>
-                <td> <%= @trip.final_destination_name %></td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="table table-hover">
-          <thead>
-            <tr class="w-50">
-              <th scope="col">Signature</th>
-            </tr>
-            <tr class="w-50">
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      
-      <div class="col-sm-6">
-        <div class="container">
-          <h2>Part C: Retailer's declaration</h2>
-          <div class="container mt-2 py-3">
-            <p>I declare that: </p>
-            <ul style="list-style: circle">
-              <li>The details on this form are correct</li>
-              <li>I am satisfied that the customer is entitiled to use the VAT Retail Export Scheme</li>
-              <li>The goods were sold on the dates stated on Part B</li>
-              <li>The customer has completed and signed Part A</li>
-            </ul>   
-            <table class="table table-hover">
-              <thead>
-                <tr class="col-3 w-50">
-                  <th scope="col">Signature</th>
-                </tr>
-                <tr class="col-3 w-50">
-                  <th scope="col">Date</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <img src='<%= asset_path 'example_form.png' %>' class="border shadow p-3 mb-5 bg-light rounded" style="zoom: 13%" alt="VAT form minature">
         </div>
-        <div class="container">
-          <h2>Part D: For official use</h2>
-          <div class="container mt-2 py-3">
-            <p>For official use at the point of export from the EU</p>
-            <table class="table table-hover">
-              <thead>
-                <tr class="w-50">
-                  <th scope="col">Signature</th>
-                </tr>
-                <tr class="col-3 w-50">
-                  <th scope="col">Stamp</th>
-                </tr>
-              </thead>
-            </table>
+        <div class="col-8">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Preview form
+          </button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">VAT Form 407</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body", style="max-width: auto">
+                  <%= render "mobile_display" %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary"><%= link_to "Download", form_display_path(@form) %></button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+          <button type="button" class="btn btn-primary", style="color: white">Send to email</button>
+          <button type="button" class="btn btn-primary"><%= link_to "Download", form_display_path(@form) %></button>
       </div>
     </div>
   </div>
 </div>
+
