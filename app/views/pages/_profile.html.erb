@@ -17,7 +17,7 @@
         <div class="">
           <div class="pie_chart">
             <%= pie_chart({"Spending" => excvat_counter.to_i, "Reclaimable VAT" => vat_save.to_i}, legend: false, colors: ["#FFAC30", "#F87060"], donut: true, library: {cutoutPercentage: 70}, dataLabels: { enabled: false }, id: "chart") %>
-            <div class="chart-text">
+            <div class="chart-text pt-3">
               <p class="key", id="vatsave"><%= "£#{vat_save.to_i}.00"%></p>
               <p class="key", id="refund"><%= "Refundable of" %></p>
               <p class="key", id="total"><%= "£#{total_counter.to_i}.00" %></p>
