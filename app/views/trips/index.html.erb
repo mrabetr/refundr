@@ -45,7 +45,7 @@
           </ul>
           <% if trip.current == true %>
             <div class="d-flex justify-content-between">
-              <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
+              <p class="btn btn-warning button"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
               <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p>
             </div>
           <% else %>
