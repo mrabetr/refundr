@@ -1,6 +1,7 @@
 class FormsController < ApplicationController
   def index
-    @forms = Form.where(user: current_user)
+    @forms = Form.where(user: current_user).order(updated_at: :desc)
+    @VatTotal = 0
   end
 
   def show
