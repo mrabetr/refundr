@@ -4,9 +4,9 @@
   <%#= f.input :photo, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo' %>
   <div style="width: 95%; margin: 150px auto;">
     <%= f.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo shadow'}, label: '📷 Upload a photo' %>
+    <%= cl_image_tag "", crop: :fill, class: "hidden photo-receipt", id: "photo-preview" %>
   </div>
   <%= f.submit value: "Add Receipt", class: "btn btn-warning button add-photo" %>
 <% end %>
-<%= cl_image_tag "", crop: :fill, class: "hidden photo-receipt", id: "photo-preview" %>
 <%#= link_to 'Back to trip', trip_path(@trip) %>
 

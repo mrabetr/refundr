@@ -1,15 +1,15 @@
 <div class="d-flex flex-column align-items-center">
   <h3>Your Trips</h3>
   <% if current_user.trips.last.current == false %>
-    <div class="trips-card shadow d-flex flex-column justify-content-center align-items-center" style="width: 95%; height: 200px;">
+    <div class="trips-card shadow border border-1 d-flex flex-column justify-content-center align-items-center" style="width: 95%; height: 200px;">
       <h5>You have no current active trips.</h5>
       <h5>Would you like to add a trip?</h5>
       <p><%= link_to 'Add trip', new_trip_path, class: "btn btn-warning button" %></p>
     </div>
-    <h3>Previous Trips</h3>
+    <h4>Previous Trips</h4>
   <% end %>
     <% @trips.each do |trip| %>
-      <div class="trips-card shadow">
+      <div class="trips-card shadow border border-1">
         <% if trip.current == true %>
           <h6 class="active"><%= trip.country_name%>: current</h6>
         <% else %>
@@ -20,7 +20,7 @@
           <p>There are no current receipts</p>
           <% if trip.current == true %>
             <div class="d-flex justify-content-between">
-              <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
+              <p class="btn btn-warning button"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
             </div>
           <% else %>
             <div class="d-flex justify-content-center">
@@ -46,7 +46,7 @@
           <% if trip.current == true %>
             <div class="d-flex justify-content-between">
               <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
-              <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p> 
+              <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p>
             </div>
           <% else %>
             <div class="d-flex justify-content-center">

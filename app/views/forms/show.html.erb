@@ -2,8 +2,8 @@
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-6">
       <h2 class="text-center my-3">VAT Form for <strong><%= @trip.country_name %></strong> trip</h2>
-      <div class="card shadow border-0 mb-3" style="width: 100%;">
-        <img src='<%= asset_path 'example_form.png' %>' class="card-img-top" style=" object-fit: cover;object-position: 100% 10%;height: 13.5em" alt="VAT form minature">
+      <div class="card shadow border-1 mb-3" style="width: 100%;">
+        <img src='<%= asset_path 'example_form.png' %>' class="card-img-top border border-bottom-1" style=" object-fit: cover;object-position: 100% 10%;height: 13.5em" alt="VAT form minature">
         <div class="card-body">
           <h5 class="border-bottom pb-2"><li class="list-inline-item"><i class="far fa-calendar-alt"></i> <%= @trip.arrival_date %> until <%= @trip.departure_date %></h5>
           <ul class="list-inline d-flex justify-content-between">

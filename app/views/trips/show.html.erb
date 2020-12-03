@@ -5,13 +5,13 @@
       <% if @trip.current == true %>
         <%= link_to edit_trip_path do %>
           <div class="edit-button">
-            <i class="fas fa-edit" style="text-align: end; width: 95%;"></i>  
+            <i class="fas fa-edit" style="text-align: end; width: 95%;"></i>
           </div>
         <% end %>
       <% end %>
     </div>
     <p>VAT: <strong><%= humanized_money_with_symbol(@VatTotal) %></strong></p>
-    <p><i class="fas fa-info-circle"></i>Reclaim your VAT by <%= @trip.departure_date.strftime("%d %b %Y") %>!</p>
+    <p><i class="fas fa-info-circle"></i> Reclaim your VAT by <%= @trip.departure_date.strftime("%d %b %Y") %>!</p>
   </div>
 
   <div style="width: 95%; margin: 10px auto;">
@@ -35,7 +35,7 @@
 </div>
 
 <% if !@trip.receipts.empty? %>
-  <nav>  
+  <nav>
     <div class="nav nav-pills d-flex justify-content-center" id="nav-tab" role="tablist">
       <a class="nav-item nav-link" id="nav-savings-tab" data-toggle="tab" href="#nav-savings" role="tab" aria-controls="nav-savings" aria-selected="true">Savings</a>
       <a class="nav-item nav-link active" id="nav-receipts-tab" data-toggle="tab" href="#nav-receipts" role="tab" aria-controls="nav-receipts" aria-selected="false">Receipts</a>
@@ -61,7 +61,7 @@
               </div>
               <div class="d-flex flex-column align-items-end">
                 <h4><%= humanized_money_with_symbol(receipt.total) %></h4>
-                <p><%= receipt.date.strftime("%d %b %Y") %></p> 
+                <p><%= receipt.date.strftime("%d %b %Y") %></p>
               </div>
             </div>
           <% end %>
