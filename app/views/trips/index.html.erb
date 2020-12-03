@@ -1,49 +1,59 @@
 <div class="d-flex flex-column align-items-center">
   <h3>Your Trips</h3>
-  <% @trips.each do |trip| %>
-    <div class="trips-card shadow">
-      <% if trip.current == true %>
-        <h6 class="active"><%= trip.country_name%>: current</h6>
-      <% else %>
-        <h6><%= trip.country_name%>: previous</h6>
-      <% end %>
-        <p class="travel-dates"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></p>
-      <% if trip.receipts.empty? %>
-        <p>There are no current receipts</p>
+  <% if current_user.trips.last.current == false %>
+    <div class="trips-card shadow d-flex flex-column justify-content-center align-items-center" style="width: 95%; height: 200px;">
+      <h5>You have no current active trips.</h5>
+      <h5>Would you like to add a trip?</h5>
+      <p><%= link_to 'Add trip', new_trip_path, class: "btn btn-warning button" %></p>
+    </div>
+    <h3>Previous Trips</h3>
+  <% end %>
+    <% @trips.each do |trip| %>
+      <div class="trips-card shadow">
         <% if trip.current == true %>
-          <div class="d-flex justify-content-between">
-            <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
-          </div>
+          <h6 class="active"><%= trip.country_name%>: current</h6>
         <% else %>
-          <div class="d-flex justify-content-center">
-            <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p>
-          </div>
+          <h6><%= trip.country_name%>: previous</h6>
         <% end %>
-      <% else %>
-        <div class="spent-border">
-          <p class="spent"><%= "Total spent: #{humanized_money_with_symbol(trip.total)}" %></p>
-        </div>
-        <p>Last receipt:</p>
-        <ul class="list-inline d-flex justify-content-between">
+          <p class="travel-dates"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></p>
+        <% if trip.receipts.empty? %>
+          <p>There are no current receipts</p>
+          <% if trip.current == true %>
+            <div class="d-flex justify-content-between">
+              <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
+            </div>
+          <% else %>
+            <div class="d-flex justify-content-center">
+              <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="spent-border">
+            <p class="spent"><%= "Total spent: #{humanized_money_with_symbol(trip.total)}" %></p>
+          </div>
+          <p>Last receipt:</p>
+          <ul class="list-inline d-flex justify-content-between">
             <li type="button" class="list-inline-item" data-toggle="modal" data-target="#items">
-              <i class="fas fa-store"></i><%= trip.receipts.last.shop %>
+              <i class="fas fa-store"></i> <%= trip.receipts.last.shop %>
             </li>
             <li type="button" class="list-inline-item" data-toggle="modal" data-target="#photo-receipt">
               <i class="fas fa-receipt"></i> <%= humanized_money_with_symbol(trip.receipts.last.total) %> total
             </li>
-            <li class="list-inline-item"><i class="far fa-calendar-alt"></i> <%= trip.receipts.last.date.strftime("%b %d") %></li>
+            <li class="list-inline-item">
+              <i class="far fa-calendar-alt"></i> <%= trip.receipts.last.date.strftime("%b %d") %>
+            </li>
           </ul>
-        <% if trip.current == true %>
-          <div class="d-flex justify-content-between">
-            <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
-            <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p> 
-          </div>
-        <% else %>
-          <div class="d-flex justify-content-center">
-            <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p>
-          </div>
+          <% if trip.current == true %>
+            <div class="d-flex justify-content-between">
+              <p class="btn btn-warning"><%= link_to "Add a receipt", new_trip_receipt_path(trip) %></p>
+              <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p> 
+            </div>
+          <% else %>
+            <div class="d-flex justify-content-center">
+              <p class="btn btn-outline-secondary"><%= link_to "View receipts", trip %></p>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
 </div>
