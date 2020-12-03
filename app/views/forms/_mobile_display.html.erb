@@ -1,31 +1,3 @@
-<h4>Part B: Goods description</h4>
-<table class="table table-hover mobile-table">
-  <thead>
-    <tr>
-      <th scope="col" style="width: 3em">No</th>
-      <th scope="col" style="width: 5em">Receipt #</th>
-      <th scope="col" style="width: 4.5em">Date</th>
-      <th scope="col" style="width: 3.5em">Qt</th>
-      <th scope="col" style="width: 6em">Description</th>
-      <th scope="col" style="width: 6em">Price+VAT</th>
-    </tr>
-  </thead>
-  <tbody class="ordered justify-content-sm-start">
-    <% @trip.receipts.each do |receipt| %>
-      <% receipt.items.each do |item| %>
-        <tr>
-          <td class="border-bottom border-top"></td>
-          <td class="border-bottom border-top"><%= receipt.transaction_no %></td>
-          <td class="border-bottom border-top"><%= receipt.date %></td>
-          <td class="border-bottom border-top"><%= item.quantity %></td>
-          <td class="border-bottom border-top"><%= item.description %></td>
-          <td class="border-bottom border-top"><%= item.price %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-
 <h4>Part A: Customer's declaration</h4>
 <table class="table table-hover mobile-table">
   <tbody>
@@ -51,10 +23,6 @@
     </tr>
     <tr>
       <th scope="row">Issued by Government of</th>
-        <td class="border-bottom border-top"> <%= @user.passport_no %></td>
-    </tr>
-    <tr>
-      <th scope="row">Passport Number</th>
         <td class="border-bottom border-top"> <%= @user.passport_country_name %></td>
     </tr>
     <tr>
@@ -69,5 +37,51 @@
       <th scope="row">Final Destination</th>
         <td> <%= @trip.final_destination_name %></td>
     </tr>
+  </tbody>
+</table>
+
+<h4>Part B: Goods description</h4>
+<table class="table table-hover mobile-table">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 3em">No</th>
+      <th scope="col" style="width: 5em">Receipt #</th>
+      <th scope="col" style="width: 4.5em">Date</th>
+      <th scope="col" style="width: 4.5em">Qt</th>
+      <th scope="col" style="width: 6em">Description</th>
+      <th scope="col" style="width: 6em">Price+VAT</th>
+    </tr>
+  </thead>
+  <tbody class="ordered justify-content-sm-start">
+    <% @trip.receipts.each do |receipt| %>
+      <% receipt.items.each do |item| %>
+        <tr>
+          <td class="border-bottom border-top"></td>
+          <td class="border-bottom border-top"><%= receipt.transaction_no %></td>
+          <td class="border-bottom border-top"><%= receipt.date %></td>
+          <td class="border-bottom border-top"><%= item.quantity %></td>
+          <td class="border-bottom border-top"><%= item.description %></td>
+          <td class="border-bottom border-top"><%= item.price %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+  <tbody class="ordered justify-content-sm-start">
+    <tr>
+      <% diff = 0 %>
+      <% total_counter = 0 %>
+      <% total_vat_counter = 0 %>
+      <% @trip.receipts.each do |receipt| %>
+        <% total_counter += receipt.total %>
+        <% diff = receipt.total - receipt.total_excl_vat %>
+        <% total_vat_counter += diff %>
+      <% end %>
+      <th scope="row"></th>
+        <td></td>
+      <th scope="row">VAT</th>
+        <td><%= "£#{total_vat_counter}" %></td>
+      <th scope="row">Total</th>
+        <td><%= "£#{total_counter}" %></td>
+     </tr>
   </tbody>
 </table>

@@ -29,6 +29,24 @@
               <% end %>
             <% end %>
           </tbody>
+          <tbody class="ordered justify-content-sm-start">
+            <tr>
+              <% diff = 0 %>
+              <% total_counter = 0 %>
+              <% total_vat_counter = 0 %>
+              <% @trip.receipts.each do |receipt| %>
+                <% total_counter += receipt.total %>
+                <% diff = receipt.total - receipt.total_excl_vat %>
+                <% total_vat_counter += diff %>
+              <% end %>
+              <th scope="row"></th>
+                <td></td>
+              <th scope="row">VAT amount</th>
+                <td><%= "£#{total_vat_counter}" %></td>
+              <th scope="row">Total</th>
+                <td><%= "£#{total_counter}" %></td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -62,10 +80,6 @@
             </tr>
             <tr>
               <th scope="row">Issued by Government of</th>
-                <td class="border-bottom border-top"> <%= @user.passport_no %></td>
-            </tr>
-            <tr>
-              <th scope="row">Passport Number</th>
                 <td class="border-bottom border-top"> <%= @user.passport_country_name %></td>
             </tr>
             <tr>

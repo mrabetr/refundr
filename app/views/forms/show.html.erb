@@ -1,39 +1,61 @@
-<div class="container">
-  <div class="trip-index-card py-3">
-    <div class="container">
-      <h4>VAT Form for <strong><%= @trip.country_name %></strong> trip</h4>
-      <h5 class="border-bottom pb-2"><%= @trip.arrival_date %> until <%= @trip.departure_date %></h5>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <img src='<%= asset_path 'example_form.png' %>' class="border shadow p-3 mb-5 bg-light rounded" style="zoom: 13%" alt="VAT form minature">
-        </div>
-        <div class="col-8">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          Preview form
-          </button>
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">VAT Form 407</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body", style="max-width: auto">
-                  <%= render "mobile_display" %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary"><%= link_to "Download", form_display_path(@form) %></button>
-                </div>
-              </div>
-            </div>
+<div class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-6">
+      <h2 class="text-center my-3">VAT Form for <strong><%= @trip.country_name %></strong> trip</h2>
+      <div class="card shadow border-0 mb-3" style="width: 100%;">
+        <img src='<%= asset_path 'example_form.png' %>' class="card-img-top" style=" object-fit: cover;object-position: 100% 10%;height: 13.5em" alt="VAT form minature">
+        <div class="card-body">
+          <h5 class="border-bottom pb-2"><li class="list-inline-item"><i class="far fa-calendar-alt"></i> <%= @trip.arrival_date %> until <%= @trip.departure_date %></h5>
+          <ul class="list-inline d-flex justify-content-between">
+            <li type="button" class="list-inline-item">
+              <i class="fas fa-wallet"></i>
+              <% total_vat_counter = 0 %>
+              <% diff = 0 %>
+              <% @trip.receipts.each do |receipt| %>
+                <% diff = receipt.total - receipt.total_excl_vat %>
+                <% total_vat_counter += diff %>
+              <% end %>
+              <%= "£#{total_vat_counter} saved" %>
+            </li>
+            <li type="button" class="list-inline-item">
+              <i class="fas fa-receipt"></i>
+              <% total_counter = 0 %>
+              <% @trip.receipts.each do |receipt| %>
+                <% total_counter += receipt.total %>
+              <% end %>
+              <%= "£#{total_counter} total" %>
+            </li>
+          </ul>
+          <hr>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-sm btn-outline-secondary w-10" data-toggle="modal" data-target="#exampleModal">Preview form
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary w-10">Send to email</button>
           </div>
-          <button type="button" class="btn btn-primary", style="color: white">Send to email</button>
-          <button type="button" class="btn btn-primary"><%= link_to "Download", form_display_path(@form) %></button>
+        </div>
       </div>
+
+      <%= link_to "Download", form_display_path(@form), class: "btn btn-warning button w-100" %>
+
+      <!-- Modal starts -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">VAT Form 407</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body", style="max-width: auto">
+              <%= render "mobile_display" %>
+            </div>
+            <div class="modal-footer">
+              <%= link_to "Download", form_display_path(@form), class: "btn btn-warning button w-100" %>
+            </div>
+        </div>
+      </div>
+      <!-- Modal ends -->
     </div>
   </div>
 </div>
