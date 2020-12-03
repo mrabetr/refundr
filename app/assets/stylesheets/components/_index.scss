@@ -10,6 +10,7 @@
 @import "trip-tables";
 @import "pie-chart";
 @import "home_banner";
+@import "home-receipts";
 
 
 body {
@@ -31,7 +32,7 @@ a:hover {
   text-decoration: none;
 }
 
-header {
+#everything {
   width: 100%;
   height: 90vh;
   margin-top: 5em;

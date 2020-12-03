@@ -199,6 +199,9 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     os (1.1.1)
+    parallax (0.4.0)
+      activesupport
+      msgpack
     parallax-rails (1.0.0)
     pg (1.2.3)
     pry (0.13.1)
@@ -347,6 +350,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   money-rails
+  parallax
   parallax-rails
   pg (>= 0.18, < 2.0)
   pry-byebug

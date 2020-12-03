@@ -48,10 +48,21 @@ document.addEventListener('turbolinks:load', () => {
   }
   if(document.querySelector(".pie_chart")) {
     const table = document.querySelector(".table");
-    const pieChart = document.querySelector(".pie_chart")
+    const tableHeight = parseFloat(getComputedStyle(table, null).height.replace("px", ""));
+    console.log(tableHeight);
+    const pieChart = document.querySelector(".header");
+    let scrollTarget = 0;
     document.addEventListener('scroll', (event) => {
-      pieChart.style.top = `${window.scrollY}px`;
-      table.style.top = `-${window.scrollY}px`;
+      // pieChart.style.top = `40px`;
+      // table.style.top = `-${window.scrollY}px`;
+      if(window.scrollY > (tableHeight - 180)) {
+        console.log("working");
+        window.scrollTo(0, scrollTarget);
+      }
+      else {
+        scrollTarget = window.scrollY;
+        console.log(scrollTarget);
+      }
     })
   }
   if (document.querySelector(".select2")) {
