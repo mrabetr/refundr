@@ -15,7 +15,7 @@
         <% else %>
           <h6><%= trip.country_name%>: previous</h6>
         <% end %>
-          <p class="travel-dates"><%= trip.arrival_date.strftime("%d/%m/%Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d/%m/%Y")  %></p>
+          <p class="travel-dates"><%= trip.arrival_date.strftime("%d %b %Y") %> to <%= trip.current == true ? "currently" : trip.departure_date.strftime("%d %b %Y")  %></p>
         <% if trip.receipts.empty? %>
           <p>There are no current receipts</p>
           <% if trip.current == true %>

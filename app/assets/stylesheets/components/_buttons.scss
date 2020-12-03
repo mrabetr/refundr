@@ -2,8 +2,6 @@
   background-color: $tax-yellow;
   border: none;
   color: $dark-blue;
-  width: 200px;
-  text-align: center;
 }
 
 .delete-button {
@@ -47,3 +45,11 @@
   width: 75px;
 }
 
+.add-photo {
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+}
