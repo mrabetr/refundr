@@ -46,19 +46,19 @@ document.addEventListener('turbolinks:load', () => {
   if(document.querySelector('#banner-typed-text')) {
     loadDynamicBannerText();
   }
+  let scrollTarget = 0;
   function scroller(event) {
     const table = document.querySelector("#dynamic-table");
     if (table) {
       const tableHeight = parseFloat(getComputedStyle(table, null).height.replace("px", ""));
       const pieChart = document.querySelector("#header");
-      let scrollTarget = 0;
         if(window.scrollY > (tableHeight - 180)) {
           window.scrollTo(0, scrollTarget);
         }
         else {
           scrollTarget = window.scrollY;
-        } 
-      } 
+        }
+      }
     }
   if(document.querySelector(".pie_chart")) {
     document.addEventListener('scroll', scroller);
